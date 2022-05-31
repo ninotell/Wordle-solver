@@ -11,9 +11,10 @@ namespace Ahorcado
         public string nombre;
         public string palabra;
         public int intentos = 0;
-        public int maxIntentos;
+        public int maxIntentos = 5;
         public bool ganado = false;
         public bool juegoTerminado = false;
+        public Dictionary<string, int> puntajes = new Dictionary<string, int>(){};
 
         public string[] palabras = new string[] { "arbol" };
 
@@ -21,6 +22,14 @@ namespace Ahorcado
         {
             nombre = _nombre;
             maxIntentos = _maxIntentos;
+            if (puntajes.TryGetValue(nombre, out int puntaje))
+            {
+                
+            }
+            else
+            {
+                puntajes.Add(nombre, 0);
+            }
 
             SetPalabra();
         }
@@ -34,12 +43,13 @@ namespace Ahorcado
 
         public bool IntentarPalabra(string _palabra)
         {
-            if(intentos < maxIntentos)
+            intentos++;
+            if (intentos < maxIntentos)
             {
-                intentos++;
                 if (palabra == _palabra)
                 {
                     ganado = true;
+                    puntajes[nombre] += 1;
                     juegoTerminado = true;
                     return true;
                 }
@@ -47,11 +57,11 @@ namespace Ahorcado
                 {
                     return false;
                 }
-            } else
+            } else if (intentos == maxIntentos)
             {
                 juegoTerminado = true;
+                puntajes[nombre] -= 1;
             }
-
             return false;
             
         }

@@ -28,6 +28,15 @@ namespace AhorcadoTests
 
             Assert.AreEqual(juego.ganado, false);
             Assert.AreEqual(juego.juegoTerminado, true);
+            Assert.AreEqual(juego.intentos, 5);
+        }
+
+        [TestMethod]
+        public void GuardaUsuarioNuevo()
+        {
+            JuegoWordle juego = new JuegoWordle("Juan", 5);
+
+            Assert.AreEqual(juego.puntajes["Juan"], 0);
         }
 
     }
