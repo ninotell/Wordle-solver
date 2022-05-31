@@ -11,13 +11,16 @@ namespace Ahorcado
         public string nombre;
         public string palabra;
         public int intentos = 0;
+        public int maxIntentos;
         public bool ganado = false;
+        public bool juegoTerminado = false;
 
-        public string[] palabras = new string[] { "arbol", "casas", "perro" };
+        public string[] palabras = new string[] { "arbol" };
 
-        public JuegoWordle(string _nombre)
+        public JuegoWordle(string _nombre, int _maxIntentos)
         {
             nombre = _nombre;
+            maxIntentos = _maxIntentos;
 
             SetPalabra();
         }
@@ -25,24 +28,28 @@ namespace Ahorcado
         private void SetPalabra()
         {
             Random random = new Random();
-            int i = random.Next(0, 2);
+            int i = random.Next(0, palabras.Length);
             palabra = palabras[i];
         }
 
         public bool IntentarPalabra(string _palabra)
         {
-            if(intentos < 3)
+            if(intentos < maxIntentos)
             {
                 intentos++;
                 if (palabra == _palabra)
                 {
                     ganado = true;
+                    juegoTerminado = true;
                     return true;
                 }
                 else
                 {
                     return false;
                 }
+            } else
+            {
+                juegoTerminado = true;
             }
 
             return false;
