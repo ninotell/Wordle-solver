@@ -8,7 +8,7 @@ namespace AhorcadoTests
     public class Sprint2Tests
     {
         [TestMethod]
-        public void EstablecerMaxIntentos3()
+        public void EstablecerMaxIntentos()
         {
             JuegoWordle juego = new JuegoWordle("Juan", 3);
 
@@ -16,7 +16,7 @@ namespace AhorcadoTests
         }
 
         [TestMethod]
-        public void PierdePartidaSiLlegaAMaxIntentos5()
+        public void ValidarPartidaPerdidaPoMaxIntentosIngresados()
         {
             JuegoWordle juego = new JuegoWordle("Juan", 5);
 
