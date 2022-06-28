@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sprint3Tests.cs" />
     <Compile Include="Sprint2Tests.cs" />
     <Compile Include="Sprint1Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
