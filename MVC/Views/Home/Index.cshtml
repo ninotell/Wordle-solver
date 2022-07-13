@@ -1,0 +1,446 @@
+﻿@model MVC.Models.WordleGame
+@{
+    ViewData["Title"] = "Wordle";
+}
+
+<h1 class="main-title" data-text="Dinamic">Wordle</h1>
+
+<hr>
+<section class="input-section">
+    <div class="left-side">
+        <input maxlength="8" class="word-input" placeholder="Ingresa tu Nombre"/>
+        <p>Selecciona la dificultad</p>
+        <div class="input-row">
+            <button class="intentar-button facil">Facil</button>
+            <button class="intentar-button medio">Medio</button>
+            <button class="intentar-button dificil">Dificil</button>
+        </div>
+        <!-- Esto se podria sacar si cambiamos el codigo para que seleccione
+        directamente el la cantidad de errores. Pero hay que cambiar todo
+        -->
+        <p>Selecciona la cantidad de errores</p>
+        <input type="number" class="word-input" min="0" max="10"/>
+        <button class="intentar-button">Jugar</button>
+        <input maxlength="8" class="word-input" placeholder="Ingresar palabra" />
+        <button class="intentar-button">Intentar!</button>
+    </div>
+    <div class="input-container">
+        <div class="input-row">
+            <div class="col input-text">
+                <p class="input-value">
+                  @Html.LabelFor(m => m.PalabraIntentada)
+                </p>
+            </div>
+            <div class="col input-text">
+                <p class="input-value">R</p>
+            </div>
+            <div class="col input-text">
+                <p class="input-value">B</p>
+            </div>
+            <div class="col input-text">
+                <p class="input-value">O</p>
+            </div>
+            <div class="col input-text">
+                <p class="input-value">L</p>
+            </div>
+            <div class="col input-text-disable">
+                <p class="input-value">-</p>
+            </div>
+            <div class="col input-text-disable">
+                <p class="input-value">-</p>
+            </div>
+            <div class="col input-text-disable">
+                <p class="input-value">-</p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="col input-text-playable">
+                <p></p>
+            </div>
+            <div class="col input-text-wrong">
+                <p></p>
+            </div>
+            <div class="col input-text-correct">
+                <p></p>
+            </div>
+            <div class="col input-text-good">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+        </div>
+        <div class="input-row">
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+            <div class="col input-text">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+<style>
+    :root {
+        --border-radius: 10px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    .left-side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-title{
+        display: block;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: black;
+        font-weight: 700;
+        transition: 0.5s;
+        text-shadow: 0 0 10px #005276,
+        0 0 30px #005276;
+    }
+
+    .main-title:hover{
+        color: rgba(0,0,0,0.7);
+        transform : translateY(-10px);
+    }
+
+    .main-title:before{
+        content: attr(data-text);
+        position: absolute;
+        bottom: -10px;
+        pointer-events: none;
+        z-index: 1;
+        font-size: 0.35em;
+        color: #00B2FF;
+        font-weight: 800;
+        letter-spacing: 100px;
+        opacity: 0;
+        transition: 0.5s;
+        text-shadow: 0 0 10px #00B2FF,
+        0 0 30px #00B2FF,
+        0 0 80px #00B2FF;
+    }
+
+    .main-title:hover:before{
+        letter-spacing: 6px;
+        opacity: 1;
+    }
+
+    .word-input {
+        height: 50px;
+        font-size: 24px;
+        border-radius: var(--border-radius);
+        padding: 0 0 0 15px;
+        text-transform: uppercase;
+    }
+
+    .intentar-button {
+        background-color: #1899D6;
+        border: solid transparent;
+        border-radius: 16px;
+        border-width: 0 0 4px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: din-round, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: .8px;
+        line-height: 20px;
+        margin: 15px 0 0 0;
+        outline: none;
+        overflow: visible;
+        padding: 13px 16px;
+        text-align: center;
+        text-transform: uppercase;
+        touch-action: manipulation;
+        transform: translateZ(0);
+        transition: filter .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: 80%;
+        transition: transform .5s;
+    }
+
+    .intentar-button:after {
+        background-clip: padding-box;
+        background-color: #1CB0F6;
+        border: solid transparent;
+        border-radius: var(--border-radius);
+        border-width: 0 0 4px;
+        bottom: -4px;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .facil{
+        background-color: #08B402;
+    }
+    .facil:after{
+        background-color: #00FF00;
+    }
+    .medio{
+        background-color: #B9BF00;
+    }
+    .medio:after{
+        background-color: #FFFF00;
+    }
+    .dificil{
+        background-color: #B90000;
+    }
+
+    .dificil:after{
+        background-color: #FF0000;
+    }
+
+    .intentar-button:hover{
+        transform: scale(.95);
+    }
+
+    .input-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 150px
+    }
+
+    .input-row .col p {
+        font-size: 28px;
+        margin: 0;
+    }
+
+    h1 {
+        margin: 15px;
+        text-align: center;
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* After Input is taken */
+    .input-row {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .input-taken {
+        border: 1px solid black;
+    }
+
+    /* Styling Input-text section */
+
+    #input-section {
+        margin-top: 25px;
+        margin-bottom: 15px;
+        width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .input-text {
+        border: 3px solid #d3d6da;
+        border-radius: var(--border-radius);
+        width: 55px;
+        height: 65px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-text-playable {
+        border: 3px solid #00FFFF;
+        border-radius: var(--border-radius);
+        width: 55px;
+        height: 65px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-text-wrong {
+        border: 3px solid #FF0000;
+        background: #B90000;
+        border-radius: var(--border-radius);
+        width: 55px;
+        height: 65px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-text-correct {
+        border: 3px solid #00FF00;
+        background: #08B402;
+        border-radius: var(--border-radius);
+        width: 55px;
+        height: 65px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-text-good {
+        border: 3px solid #FFFF00;
+        background: #B9BF00;
+        border-radius: var(--border-radius);
+        width: 55px;
+        height: 65px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-text-disable {
+        border: 3px solid #818181;
+        background-color: #818181;
+        border-radius: var(--border-radius);
+        width: 55px;
+        height: 65px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* .input-text {
+        background-color: rgb(255 105 1 / 52%);
+        background-color: rgb(124 255 1 / 52%);
+        background-color: rgb(62 62 62 / 52%);
+    } */
+</style>
