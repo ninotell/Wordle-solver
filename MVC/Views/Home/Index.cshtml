@@ -3,189 +3,39 @@
     ViewData["Title"] = "Wordle";
 }
 
-<h1 class="main-title" data-text="Dinamic">Wordle</h1>
+<h1 class="main-title">Wordle</h1>
 
 <hr>
 <section class="input-section">
     <div class="left-side">
-        <input maxlength="8" class="word-input" placeholder="Ingresa tu Nombre"/>
-        <p>Selecciona la dificultad</p>
-        <div class="input-row">
-            <button class="intentar-button facil">Facil</button>
-            <button class="intentar-button medio">Medio</button>
-            <button class="intentar-button dificil">Dificil</button>
-        </div>
-        <!-- Esto se podria sacar si cambiamos el codigo para que seleccione
-        directamente el la cantidad de errores. Pero hay que cambiar todo
-        -->
-        <p>Selecciona la cantidad de errores</p>
-        <input type="number" class="word-input" min="0" max="10"/>
-        <button class="intentar-button">Jugar</button>
-        <input maxlength="8" class="word-input" placeholder="Ingresar palabra" />
-        <button class="intentar-button">Intentar!</button>
-    </div>
-    <div class="input-container">
-        <div class="input-row">
-            <div class="col input-text">
-                <p class="input-value">
-                  @Html.LabelFor(m => m.PalabraIntentada)
-                </p>
-            </div>
-            <div class="col input-text">
-                <p class="input-value">R</p>
-            </div>
-            <div class="col input-text">
-                <p class="input-value">B</p>
-            </div>
-            <div class="col input-text">
-                <p class="input-value">O</p>
-            </div>
-            <div class="col input-text">
-                <p class="input-value">L</p>
-            </div>
-            <div class="col input-text-disable">
-                <p class="input-value">-</p>
-            </div>
-            <div class="col input-text-disable">
-                <p class="input-value">-</p>
-            </div>
-            <div class="col input-text-disable">
-                <p class="input-value">-</p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text-playable">
-                <p></p>
-            </div>
-            <div class="col input-text-wrong">
-                <p></p>
-            </div>
-            <div class="col input-text-correct">
-                <p></p>
-            </div>
-            <div class="col input-text-good">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
+        @Html.TextBoxFor(m => m.Nombre, new Dictionary<String, object>
+            {
+                { "class", "name-input" },
+                { "placeholder", "Ingresa tu nombre" },
+                { "data-bind", "value:Nombre" }
+            })
+
+        <label for="difficulty-dropdown">Selecciona la dificultad</label>
+        <select onchange="setDifficulty()" name="difficulty-dropdown" class="difficulty-dropdown" id="difficulty-row">
+            <option id="facil" value="1">Facil</option>
+            <option id="medio" value="2" selected>Medio</option>
+            <option id="dificil" value="3">Dificil</option>
+        </select>
+
+        <label for="errors">Selecciona la cantidad de errores</label>
+        <select name="errors" class="errors-dropdown" id="errors">
+            <option value="4">4</option>
+            <option value="5" selected>5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select>
+
+        @Html.DisplayFor(m => m.Nombre)
+
+        @Html.ActionLink("Jugar ahora", "Game", "Home", Model, null)
     </div>
 </section>
-</div>
+
 <style>
     :root {
         --border-radius: 10px;
@@ -205,50 +55,46 @@
         justify-content: center;
     }
 
-    .main-title{
+    .main-title {
         display: block;
         text-decoration: none;
         text-transform: uppercase;
         color: black;
         font-weight: 700;
-        transition: 0.5s;
-        text-shadow: 0 0 10px #005276,
-        0 0 30px #005276;
+        text-shadow: 0 0 10px #005276, 0 0 30px #005276;
     }
 
-    .main-title:hover{
-        color: rgba(0,0,0,0.7);
-        transform : translateY(-10px);
+    .errors-dropdown,
+    .difficulty-dropdown {
+        margin: 15px 0;
+        font-size: 18px;
+        border-radius: var(--border-radius);
+        padding: 8px;
     }
 
-    .main-title:before{
-        content: attr(data-text);
-        position: absolute;
-        bottom: -10px;
-        pointer-events: none;
-        z-index: 1;
-        font-size: 0.35em;
-        color: #00B2FF;
-        font-weight: 800;
-        letter-spacing: 100px;
-        opacity: 0;
-        transition: 0.5s;
-        text-shadow: 0 0 10px #00B2FF,
-        0 0 30px #00B2FF,
-        0 0 80px #00B2FF;
+    .difficulty-dropdown {
+        width: 100px;
+        background-color: #046f00;
+        color: white;
+        transition: transform .5s;
     }
 
-    .main-title:hover:before{
-        letter-spacing: 6px;
-        opacity: 1;
+    .errors-dropdown {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
     }
 
-    .word-input {
+    input {
         height: 50px;
         font-size: 24px;
         border-radius: var(--border-radius);
         padding: 0 0 0 15px;
         text-transform: uppercase;
+    }
+
+    .name-input {
+        margin: 0 0 15px 0;
     }
 
     .intentar-button {
@@ -265,7 +111,7 @@
         font-weight: 700;
         letter-spacing: .8px;
         line-height: 20px;
-        margin: 15px 0 0 0;
+        margin: 15px 0 15px 0;
         outline: none;
         overflow: visible;
         padding: 13px 16px;
@@ -282,42 +128,36 @@
         transition: transform .5s;
     }
 
-    .intentar-button:after {
-        background-clip: padding-box;
-        background-color: #1CB0F6;
-        border: solid transparent;
-        border-radius: var(--border-radius);
-        border-width: 0 0 4px;
-        bottom: -4px;
-        content: "";
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: -1;
+        .intentar-button:after {
+            background-clip: padding-box;
+            background-color: #1CB0F6;
+            border: solid transparent;
+            border-radius: var(--border-radius);
+            border-width: 0 0 4px;
+            bottom: -4px;
+            content: "";
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+        }
+
+    #facil {
+        background-color: #00b100;
     }
 
-    .facil{
-        background-color: #08B402;
-    }
-    .facil:after{
-        background-color: #00FF00;
-    }
-    .medio{
-        background-color: #B9BF00;
-    }
-    .medio:after{
-        background-color: #FFFF00;
-    }
-    .dificil{
-        background-color: #B90000;
+
+
+    #medio {
+        background-color: #b8b800;
     }
 
-    .dificil:after{
+    #dificil {
         background-color: #FF0000;
     }
 
-    .intentar-button:hover{
+    .intentar-button:hover {
         transform: scale(.95);
     }
 
@@ -326,17 +166,18 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        padding: 50px;
         gap: 150px
-    }
-
-    .input-row .col p {
-        font-size: 28px;
-        margin: 0;
     }
 
     h1 {
         margin: 15px;
         text-align: center;
+    }
+
+    .difficulty-dropdown:focus {
+        outline: none;
+        transform: scale(1.05);
     }
 
     .input-container {
@@ -346,101 +187,43 @@
         align-items: center;
     }
 
-    /* After Input is taken */
-    .input-row {
+    .difficulty-row {
         display: flex;
         flex-direction: row;
         gap: 15px;
-        margin-top: 15px;
     }
-
-    .input-taken {
-        border: 1px solid black;
-    }
-
-    /* Styling Input-text section */
-
-    #input-section {
-        margin-top: 25px;
-        margin-bottom: 15px;
-        width: 60%;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .input-text {
-        border: 3px solid #d3d6da;
-        border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .input-text-playable {
-        border: 3px solid #00FFFF;
-        border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .input-text-wrong {
-        border: 3px solid #FF0000;
-        background: #B90000;
-        border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .input-text-correct {
-        border: 3px solid #00FF00;
-        background: #08B402;
-        border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .input-text-good {
-        border: 3px solid #FFFF00;
-        background: #B9BF00;
-        border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .input-text-disable {
-        border: 3px solid #818181;
-        background-color: #818181;
-        border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* .input-text {
-        background-color: rgb(255 105 1 / 52%);
-        background-color: rgb(124 255 1 / 52%);
-        background-color: rgb(62 62 62 / 52%);
-    } */
 </style>
+<script>
+    let difficulty = document.getElementById("difficulty-row")
+    let facil = document.getElementById("facil")
+    let medio = document.getElementById("medio")
+    let dificil = document.getElementById("dificil")
+    const verde = "#046f00";
+    const amarillo = "#b8b800";
+    const rojo = "#FF0000";
+
+    function difficultyColors() {
+        facil.style.backgroundColor = verde;
+        medio.style.backgroundColor = amarillo;
+        dificil.style.backgroundColor = rojo;
+    }
+
+    function setDifficulty() {
+        switch (difficulty.value) {
+            case "facil":
+                difficulty.style.backgroundColor = verde;
+                difficultyColors();
+                return;
+            case "medio":
+                difficulty.style.backgroundColor = amarillo;
+                difficultyColors();
+                return;
+            case "dificil":
+                difficulty.style.backgroundColor = rojo;
+                difficultyColors();
+                return;
+
+        }
+    }
+
+</script>

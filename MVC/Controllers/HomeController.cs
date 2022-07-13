@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,15 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
+        public static Wordle.JuegoWordle Juego { get; set; }
+
         public ActionResult Index()
         {
-            return View();
+            WordleGame gameModel = new WordleGame
+            {
+                Palabra = "arbol"
+            };
+            return View(gameModel);
         }
 
         public ActionResult About()
@@ -20,11 +27,27 @@ namespace MVC.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Game(WordleGame gameModel)
         {
-            ViewBag.Message = "Your contact page.";
+            Juego = new Wordle.JuegoWordle(gameModel.Nombre, gameModel.ErroresPosibles, gameModel.Dificultad);
 
-            return View();
+            gameModel.ErroresPosibles = Juego.maxIntentos;
+            gameModel.Nombre = Juego.nombre;
+            gameModel.Dificultad = Juego.dificultad;
+
+            return View(gameModel);
         }
+
+        [HttpPost]
+        public JsonResult TryWord(WordleGame model)
+        {
+            Juego.IntentarPalabra(model.PalabraIntentada);
+            model.Win = Juego.partidaGanada;
+            model.ErroresCometidos = Juego.intentos;
+            model.PalabrasIntentadas = Juego.palabrasIntentadas;
+
+            return Json(model);
+        }
+
     }
 }

@@ -11,9 +11,9 @@ namespace Wordle.UITestAutomation
     [Binding]
     public class WordleSpecflow
     {
-        IWebDriver driver;
-        String baseURL;
-        JuegoWordle juego;
+        IWebDriver? driver;
+        string? baseURL;
+        JuegoWordle? juego;
 
         [BeforeScenario]
         public void TestInitialize()

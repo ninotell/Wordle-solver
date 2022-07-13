@@ -8,6 +8,8 @@ namespace MVC.Models
 {
     public class WordleGame
     {
+        [DisplayName("Palabra")]
+        public string Palabra { get; set; }
 
         [DisplayName("Errores Posibles")]
         public int ErroresPosibles { get; set; }
@@ -21,6 +23,7 @@ namespace MVC.Models
         [DisplayName("Palabra Intentada")]
         public string PalabraIntentada { get; set; }
 
+        [DisplayName("Win")]
         public bool Win { get; set; }
 
         [DisplayName("Errores Cometidos")]
