@@ -29,6 +29,13 @@ namespace MVC.Controllers
             return View();
         }
 
+        public ActionResult Game()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult newGame(WordleGame gameModel)
         {
