@@ -2,11 +2,11 @@
 @{
     ViewBag.Title = "Game";
 }
-<h2>@ViewBag.Title.</h2>
-<h1 class="main-title">@Html.DisplayFor(m => m)</h1>
+<h1 class="main-title">WORDLE</h1>
 <hr>
 <section class="input-section">
     <div class="left-side">
+        <h5>@Html.DisplayFor(m => m)</h5>
         <input maxlength="8" class="word-input" placeholder="Ingresar palabra" />
         <button class="intentar-button">Intentar!</button>
     </div>

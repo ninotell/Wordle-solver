@@ -11,14 +11,16 @@ namespace MVC.Controllers
     {
         public static Wordle.JuegoWordle Juego { get; set; }
 
-        public ActionResult Index()
+        public ActionResult Index(WordleGame gameModel)
         {
-            WordleGame gameModel = new WordleGame
+            WordleGame newGame = new WordleGame()
             {
-                Palabra = "arbol"
+                Nombre = gameModel.Nombre,
+                ErroresPosibles = gameModel.ErroresPosibles
             };
-            return View(gameModel);
+            return View(newGame);
         }
+
 
         public ActionResult About()
         {
@@ -27,7 +29,8 @@ namespace MVC.Controllers
             return View();
         }
 
-        public ActionResult Game(WordleGame gameModel)
+        [HttpPost]
+        public ActionResult newGame(WordleGame gameModel)
         {
             Juego = new Wordle.JuegoWordle(gameModel.Nombre, gameModel.ErroresPosibles, gameModel.Dificultad);
 

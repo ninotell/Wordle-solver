@@ -31,6 +31,10 @@ namespace Wordle
             nombre = _nombre;
             maxIntentos = _maxIntentos;
             dificultad = _dificiultad;
+            if (nombre == null || maxIntentos == 0 || dificultad == 0)
+            {
+                return;
+            }
             if (puntajes.TryGetValue(nombre, out _))
             { }
             else

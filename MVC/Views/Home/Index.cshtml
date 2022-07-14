@@ -1,6 +1,20 @@
 ﻿@model MVC.Models.WordleGame
+@using Newtonsoft.Json
 @{
     ViewData["Title"] = "Wordle";
+}
+@{
+    string data = JsonConvert.SerializeObject(Model);
+
+}
+@section scripts
+{
+    <script src="~/Scripts/Wordle/WordleVM.js"></script>
+    <script type="text/javascript">
+        var wordleVM = new WordleVM(@Html.Raw(data));
+        console.log("PRUEBA");
+        ko.applyBindings(wordleVM);
+    </script>
 }
 
 <h1 class="main-title">Wordle</h1>
@@ -18,22 +32,29 @@
         <label for="difficulty-dropdown">Selecciona la dificultad</label>
         <select onchange="setDifficulty()" name="difficulty-dropdown" class="difficulty-dropdown" id="difficulty-row">
             <option id="facil" value="1">Facil</option>
-            <option id="medio" value="2" selected>Medio</option>
+            <option id="medio" value="2">Medio</option>
             <option id="dificil" value="3">Dificil</option>
         </select>
 
         <label for="errors">Selecciona la cantidad de errores</label>
         <select name="errors" class="errors-dropdown" id="errors">
             <option value="4">4</option>
-            <option value="5" selected>5</option>
+            <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
         </select>
 
         @Html.DisplayFor(m => m.Nombre)
 
-        @Html.ActionLink("Jugar ahora", "Game", "Home", Model, null)
+        <button class="intentar-button" data-bind="click: newGame, enable: true">Jugar ahora!</button>
+
+        @*@Html.ActionLink("Jugar ahora", "Game", "Home", Model, new Dictionary<String, object>
+            {
+                { "class", "intentar-button" },
+                { "data-bind", "value:Game" }
+            })*@
     </div>
+
 </section>
 
 <style>
@@ -126,6 +147,8 @@
         white-space: nowrap;
         width: 80%;
         transition: transform .5s;
+        color: white;
+        text-decoration: none;
     }
 
         .intentar-button:after {
@@ -159,6 +182,8 @@
 
     .intentar-button:hover {
         transform: scale(.95);
+        color: white;
+        text-decoration: none;
     }
 
     .input-section {
