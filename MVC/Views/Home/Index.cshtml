@@ -46,13 +46,14 @@
         </select>
 
         @Html.DisplayFor(m => m.Nombre)
+        @Html.TextBoxFor(m => m.ErroresPosibles, new { @type = "number" })
 
         @*<button class="intentar-button" data-bind="click: newGame, enable: true">Jugar ahora!</button>*@
 
         @Html.ActionLink("Jugar ahora", "Game", "Home", Model, new Dictionary<String, object>
             {
                 { "class", "intentar-button" },
-                { "data-bind", "value:Game" }
+                { "data-bind", "value:Game" },
             })
     </div>
 

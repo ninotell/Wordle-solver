@@ -17,14 +17,21 @@ namespace MVC.Controllers
             return View(new WordleGame());
         }
 
-        [HttpPost]
+        //[HttpPost]
+        //public ActionResult Game(WordleGame gameModel)
+        //{
+        //    Juego = new Wordle.JuegoWordle(gameModel.Nombre, gameModel.ErroresPosibles, gameModel.Dificultad);
+
+        //    return View(gameModel);
+        //}
+
+        [Route("Game")]
         public ActionResult Game(WordleGame gameModel)
         {
-            Juego = new Wordle.JuegoWordle(gameModel.Nombre, gameModel.ErroresPosibles, gameModel.Dificultad);
-
-            return View(gameModel);
+            //gameModel.Dificultad = 2;
+            //gameModel.ErroresPosibles = 5;
+            return this.View(gameModel);
         }
-
         
     }
 }
