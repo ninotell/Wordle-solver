@@ -16,9 +16,6 @@
         ko.applyBindings(wordleVM);
     </script>
 }
-
-<h1 class="main-title">Wordle</h1>
-
 <hr>
 <section class="input-section">
     <div class="left-side">
@@ -38,10 +35,14 @@
 
         <label for="errors">Selecciona la cantidad de errores</label>
         <select name="errors" class="errors-dropdown" id="errors">
+            <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
         </select>
 
         @Html.DisplayFor(m => m.Nombre)
@@ -88,20 +89,21 @@
     .errors-dropdown,
     .difficulty-dropdown {
         margin: 15px 0;
+        justify-content: center;
         font-size: 18px;
         border-radius: var(--border-radius);
         padding: 8px;
     }
 
     .difficulty-dropdown {
-        width: 100px;
+        width: 130px;
         background-color: #046f00;
         color: white;
         transition: transform .5s;
     }
 
     .errors-dropdown {
-        width: 50px;
+        width: 60px;
         height: 50px;
         border-radius: 50%;
     }

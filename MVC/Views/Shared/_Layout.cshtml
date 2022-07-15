@@ -16,22 +16,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <!-- @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) -->
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Game", "Game", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li><h1 class="main-title" data-text="DINAMIC">WORDLE</h1></li>
+
                 </ul>
+
             </div>
+
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Metodologias Agiles - UTN FRRO</p>
         </footer>
     </div>
 
@@ -40,3 +44,52 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<style>
+    .main-title {
+        display: block;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+        font-weight: 700;
+        text-shadow: 0 0 10px #005276, 0 0 30px #005276;
+        justify-content: center;
+    }
+
+    .main-title:hover {
+        color: floralwhite;
+        transform: translateY(-10px);
+    }
+
+    .main-title:before {
+        content: attr(data-text);
+        position: absolute;
+        bottom: 0px;
+        pointer-events: none;
+        z-index: 1;
+        font-size: 0.35em;
+        color: #00B2FF;
+        font-weight: 800;
+        letter-spacing: 4px;
+        opacity: 0;
+        transition: 0.3s;
+        text-shadow: 0 0 10px #00B2FF, 0 0 30px #00B2FF, 0 0 80px #00B2FF;
+    }
+
+    .main-title:hover:before {
+        letter-spacing: 2px;
+        opacity: 1;
+    }
+
+    .nav navbar-nav {
+        border: 3px solid #d3d6da;
+        border-radius: var(--border-radius);
+        width: 55px;
+        height: 65px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+ </style>

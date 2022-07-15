@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "Game";
 }
-<h1 class="main-title">WORDLE</h1>
+<!--
+<h1 class="main-title" data-text="DINAMIC">WORDLE</h1>
+    -->
 <hr>
 <section class="input-section">
     <div class="left-side">
@@ -135,6 +137,31 @@
         font-weight: 700;
         text-shadow: 0 0 10px #005276, 0 0 30px #005276;
     }
+
+        .main-title:hover {
+            color: rgba(0,0,0,0.7);
+            transform: translateY(-10px);
+        }
+
+        .main-title:before {
+            content: attr(data-text);
+            position: absolute;
+            bottom: -10px;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 0.35em;
+            color: #00B2FF;
+            font-weight: 800;
+            letter-spacing: 100px;
+            opacity: 0;
+            transition: 0.5s;
+            text-shadow: 0 0 10px #00B2FF, 0 0 30px #00B2FF, 0 0 80px #00B2FF;
+        }
+
+        .main-title:hover:before {
+            letter-spacing: 6px;
+            opacity: 1;
+        }
 
     .left-side {
         display: flex;
