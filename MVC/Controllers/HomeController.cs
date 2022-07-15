@@ -11,53 +11,20 @@ namespace MVC.Controllers
     {
         public static Wordle.JuegoWordle Juego { get; set; }
 
-        public ActionResult Index(WordleGame gameModel)
+        // GET: Wordle
+        public ActionResult Index()
         {
-            WordleGame newGame = new WordleGame()
-            {
-                Nombre = gameModel.Nombre,
-                ErroresPosibles = gameModel.ErroresPosibles
-            };
-            return View(newGame);
-        }
-
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Game()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View(new WordleGame());
         }
 
         [HttpPost]
-        public ActionResult newGame(WordleGame gameModel)
+        public ActionResult Game(WordleGame gameModel)
         {
             Juego = new Wordle.JuegoWordle(gameModel.Nombre, gameModel.ErroresPosibles, gameModel.Dificultad);
-
-            gameModel.ErroresPosibles = Juego.maxIntentos;
-            gameModel.Nombre = Juego.nombre;
-            gameModel.Dificultad = Juego.dificultad;
 
             return View(gameModel);
         }
 
-        [HttpPost]
-        public JsonResult TryWord(WordleGame model)
-        {
-            Juego.IntentarPalabra(model.PalabraIntentada);
-            model.Win = Juego.partidaGanada;
-            model.ErroresCometidos = Juego.intentos;
-            model.PalabrasIntentadas = Juego.palabrasIntentadas;
-
-            return Json(model);
-        }
-
+        
     }
 }

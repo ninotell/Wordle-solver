@@ -14,6 +14,15 @@ namespace MVC
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new StyleBundle("~/bundles/knockout").Include("~/Scripts/knockout-3.4.0.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/JQueryKnockOut").Include(
+                "~/Scripts/jquery-{version}.js",
+                 "~/Scripts/knockout-{version}.js",
+                 "~/Scripts/knockout.mapping-latest.js",
+                 "~/Scripts/pnotify.custom.js"
+                ));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

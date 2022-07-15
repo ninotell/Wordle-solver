@@ -10,9 +10,9 @@
 @section scripts
 {
     <script src="~/Scripts/Wordle/WordleVM.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
     <script type="text/javascript">
         var wordleVM = new WordleVM(@Html.Raw(data));
-        console.log("PRUEBA");
         ko.applyBindings(wordleVM);
     </script>
 }
@@ -47,13 +47,13 @@
 
         @Html.DisplayFor(m => m.Nombre)
 
-        <button class="intentar-button" data-bind="click: newGame, enable: true">Jugar ahora!</button>
+        @*<button class="intentar-button" data-bind="click: newGame, enable: true">Jugar ahora!</button>*@
 
-        @*@Html.ActionLink("Jugar ahora", "Game", "Home", Model, new Dictionary<String, object>
+        @Html.ActionLink("Jugar ahora", "Game", "Home", Model, new Dictionary<String, object>
             {
                 { "class", "intentar-button" },
                 { "data-bind", "value:Game" }
-            })*@
+            })
     </div>
 
 </section>
