@@ -17,12 +17,14 @@
     </script>
 }
 <hr>
+
+<h1 class="main-title">WORDLE</h1>
 <section class="input-section">
-    <div class="left-side">
+    <div>
         @using (Html.BeginForm("Game", "Home"))
         {
 
-            <input type="text" name="nombre" /><br />
+            <input type="text" name="nombre" placeholder="Ingrese su nombre" class="centrado"/><br />
             <br />
 
             <label for="errors">Selecciona la cantidad de errores</label>
@@ -36,24 +38,26 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
+            <br />
 
-            <label for="difficulty-dropdown">Selecciona la dificultad</label>
+            <label for="difficulty">Selecciona la dificultad</label>
             <select onchange="setDifficulty()" name="difficulty" class="difficulty-dropdown" id="difficulty-row">
                 <option id="facil" value="1">Facil</option>
                 <option id="medio" value="2">Medio</option>
                 <option id="dificil" value="3">Dificil</option>
             </select>
-
-
             <br />
-            <input type="submit" value="Click Me" />
+            
+            <div class="centrado">
+                <input type="submit" value="Jugar ahora" class="intentar-button" />
+            </div>
             <br />
 
         }
 
 
 
-        @Html.TextBoxFor(m => m.Nombre, new Dictionary<String, object>
+        <!--@Html.TextBoxFor(m => m.Nombre, new Dictionary<String, object>
             {
                 { "class", "name-input" },
                 { "placeholder", "Ingresa tu nombre" },
@@ -63,15 +67,15 @@
 
 
         @Html.DisplayFor(m => m.Nombre)
-        @Html.TextBoxFor(m => m.ErroresPosibles, new { @type = "number" })
+        @Html.TextBoxFor(m => m.ErroresPosibles, new { @type = "number" })-->
 
         @*<button class="intentar-button" data-bind="click: newGame, enable: true">Jugar ahora!</button>*@
 
-        @Html.ActionLink("Jugar ahora", "Game", "Home", Model, new Dictionary<String, object>
+        <!--@Html.ActionLink("Jugar ahora", "Game", "Home", Model, new Dictionary<String, object>
             {
                 { "class", "intentar-button" },
                 { "data-bind", "value:Game" },
-            })
+            })-->
     </div>
 
 </section>
@@ -96,7 +100,6 @@
     }
 
     .main-title {
-        display: block;
         text-decoration: none;
         text-transform: uppercase;
         color: black;
@@ -115,8 +118,7 @@
 
     .difficulty-dropdown {
         width: 130px;
-        background-color: #046f00;
-        color: white;
+        color: black;
         transition: transform .5s;
     }
 
@@ -171,33 +173,31 @@
         text-decoration: none;
     }
 
-        .intentar-button:after {
-            background-clip: padding-box;
-            background-color: #1CB0F6;
-            border: solid transparent;
-            border-radius: var(--border-radius);
-            border-width: 0 0 4px;
-            bottom: -4px;
-            content: "";
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            z-index: -1;
-        }
-
-    #facil {
-        background-color: #00b100;
+    .intentar-button:after {
+        background-clip: padding-box;
+        background-color: #1CB0F6;
+        border: solid transparent;
+        border-radius: var(--border-radius);
+        border-width: 0 0 4px;
+        bottom: -4px;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
     }
 
-
+    #facil {
+        background-color: #90EE90;
+    }
 
     #medio {
-        background-color: #b8b800;
+        background-color: #F1EB9C;
     }
 
     #dificil {
-        background-color: #FF0000;
+        background-color: #FF7F7F;
     }
 
     .intentar-button:hover {
@@ -237,15 +237,19 @@
         flex-direction: row;
         gap: 15px;
     }
+
+    .centrado {
+        text-align: center;
+    }
 </style>
 <script>
     let difficulty = document.getElementById("difficulty-row")
     let facil = document.getElementById("facil")
     let medio = document.getElementById("medio")
     let dificil = document.getElementById("dificil")
-    const verde = "#046f00";
-    const amarillo = "#b8b800";
-    const rojo = "#FF0000";
+    const verde = "#90EE90";
+    const amarillo = "#F1EB9C";
+    const rojo = "#FF7F7F";
 
     function difficultyColors() {
         facil.style.backgroundColor = verde;

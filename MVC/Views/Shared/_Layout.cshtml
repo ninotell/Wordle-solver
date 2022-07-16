@@ -17,15 +17,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <!-- @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) -->
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Game", "Game", "Home")</li>
+                    <li>@Html.ActionLink("Jugar", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li><h1 class="main-title" data-text="DINAMIC">WORDLE</h1></li>
-
                 </ul>
 
             </div>
@@ -57,11 +53,6 @@
         justify-content: center;
     }
 
-    .main-title:hover {
-        color: floralwhite;
-        transform: translateY(-10px);
-    }
-
     .main-title:before {
         content: attr(data-text);
         position: absolute;
@@ -75,11 +66,6 @@
         opacity: 0;
         transition: 0.3s;
         text-shadow: 0 0 10px #00B2FF, 0 0 30px #00B2FF, 0 0 80px #00B2FF;
-    }
-
-    .main-title:hover:before {
-        letter-spacing: 2px;
-        opacity: 1;
     }
 
     .nav navbar-nav {
