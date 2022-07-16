@@ -15,20 +15,23 @@
     </div>
     <div class="input-container">
         <div class="input-row">
+            <!-- HAY QUE CORREGIR PARA QUE NO SE ROMPA SI LA PALABRA SOLO TIENE 4 LETRAS-->
             <div class="col input-text">
-                <p class="input-value">A</p>
+                <p class="input-value">@Html.DisplayFor(m => m.Palabra[0])</p>
             </div>
             <div class="col input-text">
-                <p class="input-value">R</p>
+                <p class="input-value">@Html.DisplayFor(m => m.Palabra[1])</p>
             </div>
             <div class="col input-text">
-                <p class="input-value">B</p>
+                <p class="input-value">@Html.DisplayFor(m => m.Palabra[2])</p>
             </div>
             <div class="col input-text">
-                <p class="input-value">O</p>
+                <p class="input-value">@Html.DisplayFor(m => m.Palabra[3])</p>
             </div>
             <div class="col input-text">
-                <p class="input-value">L</p>
+                <p class="input-value">
+                    -
+                </p>
             </div>
         </div>
         <div class="input-row">
