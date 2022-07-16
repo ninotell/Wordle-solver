@@ -7,50 +7,60 @@
 <section class="input-section">
     <div class="left-side">
         <h2>@Html.DisplayFor(m => m.Nombre)</h2>
-        <input maxlength="8" class="word-input" placeholder="Ingresar palabra" />
-        <button class="intentar-button">Intentar!</button>
-        <h5>@Html.DisplayFor(m => m)</h5>
-    </div>
-    <div class="input-container">
-        @for (int i = 0; i < Model.ErroresPosibles; i++)
-        {
-            <div class="input-row">
-                @switch (Model.Dificultad)
+        <div class="form-group">
+            <div>
+                @Html.TextBoxFor(m => m.PalabraIntentada, new Dictionary<String, object>
                 {
-                    case 1:
-                        {
-                            for (int j = 0; j <= 3; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
-                                </div>
-                            }
-                            break;
-                        }
-                    case 2:
-                        {
-                            for (int j = 0; j <= 5; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
-                                </div>
-                            }
-                            break;
-                        }
-                    case 3:
-                        {
-                            for (int j = 0; j <= 7; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
-                                </div>
-                            }
-                            break;
-                        }
-                }
+                    { "class", "word-input" },
+                    { "placeholder", "Ingrese palabra" },
+                    { "data-bind", "value:PalabraIntentada" },
+                    { "maxlength", "8" }
+                })
             </div>
-        }
-    </div>
+        </div>
+        <button id="btnInsertWord" class="intentar-button" data-bind="click: tryWord">Intentar</button>
+        <h5>@Html.DisplayFor(m => m)</h5>
+        </div>
+        <div class="input-container">
+            @for (int i = 0; i < Model.ErroresPosibles; i++)
+            {
+                <div class="input-row">
+                    @switch (Model.Dificultad)
+                    {
+                        case 1:
+                            {
+                                for (int j = 0; j <= 3; j++)
+                                {
+                                    <div class="col input-text">
+                                        <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
+                                    </div>
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                for (int j = 0; j <= 5; j++)
+                                {
+                                    <div class="col input-text">
+                                        <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
+                                    </div>
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    <div class="col input-text">
+                                        <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
+                                    </div>
+                                }
+                                break;
+                            }
+                    }
+                </div>
+            }
+        </div>
 </section>
 <style>
     :root {

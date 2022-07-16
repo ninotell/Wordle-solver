@@ -11,8 +11,7 @@ namespace MVC.Controllers
     public class HomeController : Controller
     {
        
-
-        public static Wordle.JuegoWordle Juego { get; set; }
+        public static JuegoWordle Juego { get; set; }
 
         // GET: Wordle
         public ActionResult Index()
@@ -33,6 +32,7 @@ namespace MVC.Controllers
                 Palabra = juegowordle.palabra,
                 PalabrasIntentadas = juegowordle.palabrasIntentadas,
             };
+
             return View(juego);
         }
 

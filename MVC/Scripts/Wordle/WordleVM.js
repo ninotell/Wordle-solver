@@ -18,5 +18,25 @@ WordleVM = function (data) {
 
                 }
             });
-    }   
+    }
+
+    self.tryWord = function () {
+        $.post(
+            {
+                url: "/Hangman/TryLetter",
+                data: ko.mapping.toJS(self),
+                success: function (response) {
+                    ko.mapping.fromJS(response, {}, self);
+                    if (self.Win()) {
+                        self.Notify("win");
+                    }
+                    else if (self.ChancesLeft() == 0) {
+                        self.Notify("loss");
+                    }
+                },
+                error: function () {
+
+                }
+            })
+    }
 }

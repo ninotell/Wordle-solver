@@ -8,10 +8,8 @@ using Wordle;
 
 namespace MVC.Controllers
 {
-    public class GameController : Controller
+    public class GameController : HomeController
     {
-        public static JuegoWordle Juego { get; set; }
-
         public ActionResult Game()
         {
             return View(new WordleGame());
@@ -25,25 +23,25 @@ namespace MVC.Controllers
         //    return Json(model);
         //}
 
-        //[HttpPost]
-        //public JsonResult TryLetter(Hangman model)
-        //{
-        //    Juego.insertarLetra(Convert.ToChar(model.LetterTyped));
-        //    model.Win = Juego.ValidarPalabra();
-        //    model.ChancesLeft = Juego.ChancesRestantes;
-        //    model.WrongLetters = string.Empty;
-        //    foreach (var wLetter in Juego.LetrasErradas)
-        //    {
-        //        model.WrongLetters += wLetter + ",";
-        //    }
-        //    model.GuessingWord = string.Empty;
-        //    foreach (var rLetter in Juego.PalabraIngresada)
-        //    {
-        //        model.GuessingWord += rLetter + " ";
-        //    }
-        //    model.LetterTyped = string.Empty;
-        //    return Json(model);
-        //}
+        [HttpPost]
+        public JsonResult TryLetter(WordleGame model)
+        {
+            model.Win = Juego.IntentarPalabra(model.PalabraIntentada);
+            //model.Win = Juego.ValidarPalabra();
+            //model.ChancesLeft = Juego.ChancesRestantes;
+            //model.WrongLetters = string.Empty;
+            //foreach (var wLetter in Juego.LetrasErradas)
+            //{
+            //    model.WrongLetters += wLetter + ",";
+            //}
+            //model.GuessingWord = string.Empty;
+            //foreach (var rLetter in Juego.PalabraIngresada)
+            //{
+            //    model.GuessingWord += rLetter + " ";
+            //}
+            //model.LetterTyped = string.Empty;
+            return Json(model);
+        }
 
     }
 }
