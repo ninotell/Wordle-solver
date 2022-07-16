@@ -8,8 +8,6 @@ using System.Threading;
 
 namespace Wordle
 {
-
-
     public class JuegoWordle
     {
         public string nombre, palabra;
@@ -78,12 +76,6 @@ namespace Wordle
                 {
                     partidaGanada = true;
                     TerminarJuego();
-                    //puntajes[nombre] += 1;
-                    //juegoTerminado = true;
-                    //stopWatch.Stop();
-                    //TimeSpan ts = stopWatch.Elapsed;
-                    //elapsedTime = String.Format("{0:00}hs:{1:00}min:{2:00}seg.{3:00}",ts.Hours, ts.Minutes, ts.Seconds,ts.Milliseconds / 10);
-                    //Console.WriteLine(elapsedTime);
                     return true;
                 }
                 else
@@ -91,9 +83,6 @@ namespace Wordle
                     if (intentos == maxIntentos)
                     {
                         TerminarJuego();
-                        //juegoTerminado = true;
-                        //puntajes[nombre] -= 1;
-                        //stopWatch.Stop();
                     }
                     return false;
                 }
