@@ -2,123 +2,54 @@
 @{
     ViewBag.Title = "Game";
 }
-<!--
-<h1 class="main-title" data-text="DINAMIC">WORDLE</h1>
-    -->
+
 <hr>
 <section class="input-section">
     <div class="left-side">
-        <h5>@Html.DisplayFor(m => m)</h5>
-        <h5>@Html.DisplayFor(m => m.Nombre)</h5>
+        <h2>@Html.DisplayFor(m => m.Nombre)</h2>
         <input maxlength="8" class="word-input" placeholder="Ingresar palabra" />
         <button class="intentar-button">Intentar!</button>
+        <h5>@Html.DisplayFor(m => m)</h5>
     </div>
     <div class="input-container">
-        <div class="input-row">
-            <!-- HAY QUE CORREGIR PARA QUE NO SE ROMPA SI LA PALABRA SOLO TIENE 4 LETRAS-->
-            <div class="col input-text">
-                <p class="input-value">@Html.DisplayFor(m => m.Palabra[0])</p>
+        @for (int i = 0; i < Model.ErroresPosibles; i++)
+        {
+            <div class="input-row">
+                @switch (Model.Dificultad)
+                {
+                    case 1:
+                        {
+                            for (int j = 0; j <= 3; j++)
+                            {
+                                <div class="col input-text">
+                                    <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
+                                </div>
+                            }
+                            break;
+                        }
+                    case 2:
+                        {
+                            for (int j = 0; j <= 5; j++)
+                            {
+                                <div class="col input-text">
+                                    <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
+                                </div>
+                            }
+                            break;
+                        }
+                    case 3:
+                        {
+                            for (int j = 0; j <= 7; j++)
+                            {
+                                <div class="col input-text">
+                                    <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
+                                </div>
+                            }
+                            break;
+                        }
+                }
             </div>
-            <div class="col input-text">
-                <p class="input-value">@Html.DisplayFor(m => m.Palabra[1])</p>
-            </div>
-            <div class="col input-text">
-                <p class="input-value">@Html.DisplayFor(m => m.Palabra[2])</p>
-            </div>
-            <div class="col input-text">
-                <p class="input-value">@Html.DisplayFor(m => m.Palabra[3])</p>
-            </div>
-            <div class="col input-text">
-                <p class="input-value">
-                    -
-                </p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-            <div class="col input-text">
-                <p></p>
-            </div>
-        </div>
+        }
     </div>
 </section>
 <style>
@@ -126,224 +57,224 @@
         --border-radius: 10px;
     }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: sans-serif;
-    }
+            * {
+            margin: 0;
+            padding: 0;
+                box-sizing: border-box;
+                font-family: sans-serif;
+            }
 
     .main-title {
-        display: block;
-        text-decoration: none;
-        text-transform: uppercase;
-        color: black;
-        font-weight: 700;
-        text-shadow: 0 0 10px #005276, 0 0 30px #005276;
+            display: block;
+                text-decoration: none;
+                text-transform: uppercase;
+            color: black;
+                font-weight: 700;
+                text-shadow: 0 0 10px #005276, 0 0 30px #005276;
     }
 
         .main-title:hover {
             color: rgba(0,0,0,0.7);
             transform: translateY(-10px);
-        }
+            }
 
         .main-title:before {
             content: attr(data-text);
             position: absolute;
             bottom: -10px;
-            pointer-events: none;
-            z-index: 1;
-            font-size: 0.35em;
+                pointer-events: none;
+                z-index: 1;
+                font-size: 0.35em;
             color: #00B2FF;
             font-weight: 800;
-            letter-spacing: 100px;
+                letter-spacing: 100px;
             opacity: 0;
             transition: 0.5s;
-            text-shadow: 0 0 10px #00B2FF, 0 0 30px #00B2FF, 0 0 80px #00B2FF;
+                text-shadow: 0 0 10px #00B2FF, 0 0 30px #00B2FF, 0 0 80px #00B2FF;
         }
 
         .main-title:hover:before {
-            letter-spacing: 6px;
+                letter-spacing: 6px;
             opacity: 1;
-        }
+            }
 
     .left-side {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+            display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
 
     .word-input {
-        height: 50px;
-        font-size: 24px;
-        border-radius: var(--border-radius);
-        padding: 0 0 0 15px;
-    }
+            height: 50px;
+                font-size: 24px;
+                border-radius: var(--border-radius);
+            padding: 0 0 0 15px;
+            }
 
     .intentar-button {
-        background-color: #1899D6;
+                background-color: #1899D6;
         border: solid transparent;
-        border-radius: 16px;
-        border-width: 0 0 4px;
-        box-sizing: border-box;
-        color: #FFFFFF;
+                border-radius: 16px;
+                border-width: 0 0 4px;
+                box-sizing: border-box;
+            color: #FFFFFF;
         cursor: pointer;
-        display: inline-block;
-        font-family: din-round, sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: .8px;
-        line-height: 20px;
-        margin: 15px 0 0 0;
-        outline: none;
-        overflow: visible;
-        padding: 13px 16px;
-        text-align: center;
-        text-transform: uppercase;
-        touch-action: manipulation;
-        transform: translateZ(0);
-        transition: filter .2s;
-        user-select: none;
-        -webkit-user-select: none;
-        vertical-align: middle;
-        white-space: nowrap;
-        width: 80%;
-        transition: transform .5s;
-    }
+            display: inline-block;
+                font-family: din-round, sans-serif;
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: .8px;
+                line-height: 20px;
+            margin: 15px 0 0 0;
+            outline: none;
+            overflow: visible;
+            padding: 13px 16px;
+                text-align: center;
+                text-transform: uppercase;
+                touch-action: manipulation;
+            transform: translateZ(0);
+            transition: filter .2s;
+                user-select: none;
+                -webkit-user-select: none;
+                vertical-align: middle;
+                white-space: nowrap;
+            width: 80%;
+            transition: transform .5s;
+            }
 
         .intentar-button:after {
-            background-clip: padding-box;
-            background-color: #1CB0F6;
+                background-clip: padding-box;
+                background-color: #1CB0F6;
             border: solid transparent;
-            border-radius: var(--border-radius);
-            border-width: 0 0 4px;
+                border-radius: var(--border-radius);
+                border-width: 0 0 4px;
             bottom: -4px;
             content: "";
             left: 0;
             position: absolute;
             right: 0;
             top: 0;
-            z-index: -1;
-        }
+                z-index: -1;
+            }
 
         .intentar-button:hover {
             transform: scale(.95);
-        }
+            }
 
     .input-section {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 150px
+            display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            gap: 150px
     }
 
     .input-row .col p {
-        font-size: 28px;
-    }
+                font-size: 28px;
+            }
 
-    h1 {
-        margin: 15px;
-        text-align: center;
-    }
+            h1 {
+            margin: 15px;
+                text-align: center;
+            }
 
     .input-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+            display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
 
     /* After Input is taken */
     .input-row {
-        display: flex;
-        flex-direction: row;
-        gap: 15px;
-        margin-top: 15px;
-    }
+            display: flex;
+                flex-direction: row;
+            gap: 15px;
+                margin-top: 15px;
+            }
 
     .input-taken {
-        border: 1px solid black;
-    }
+            border: 1px solid black;
+            }
 
-    /* Styling Input-text section */
+            /* Styling Input-text section */
 
-    #input-section {
-        margin-top: 25px;
-        margin-bottom: 15px;
+#input-section {
+            margin-top: 25px;
+            margin-bottom: 15px;
         width: 60%;
-        margin-right: auto;
-        margin-left: auto;
+            margin-right: auto;
+            margin-left: auto;
     }
 
     .input-text {
-        border: 3px solid #d3d6da;
+            border: 3px solid #d3d6da;
         border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            width: 55px;
+            height: 65px;
+                text-align: center;
+            display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
     .input-text-playable {
-        border: 3px solid #00FFFF;
+            border: 3px solid #00FFFF;
         border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            width: 55px;
+            height: 65px;
+                text-align: center;
+            display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
     .input-text-wrong {
-        border: 3px solid #FF0000;
+            border: 3px solid #FF0000;
         background: #B90000;
         border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            width: 55px;
+            height: 65px;
+                text-align: center;
+            display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
     .input-text-correct {
-        border: 3px solid #00FF00;
+            border: 3px solid #00FF00;
         background: #08B402;
         border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            width: 55px;
+            height: 65px;
+                text-align: center;
+            display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
     .input-text-good {
-        border: 3px solid #FFFF00;
+            border: 3px solid #FFFF00;
         background: #B9BF00;
         border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            width: 55px;
+            height: 65px;
+                text-align: center;
+            display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
     .input-text-disable {
-        border: 3px solid #818181;
+            border: 3px solid #818181;
         background-color: #818181;
         border-radius: var(--border-radius);
-        width: 55px;
-        height: 65px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+            width: 55px;
+            height: 65px;
+                text-align: center;
+            display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 </style>
