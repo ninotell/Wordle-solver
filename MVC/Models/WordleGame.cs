@@ -29,8 +29,11 @@ namespace MVC.Models
         [DisplayName("Errores Cometidos")]
         public int ErroresCometidos { get; set; }
 
-        [DisplayName("Palabra Intentada")]
+        [DisplayName("Palabras Intentadas")]
         public List<string> PalabrasIntentadas { get; set; }
+
+        [DisplayName("Resultados")]
+        public List<string> ResultadosIntentos { get; set; }
 
     }
 }

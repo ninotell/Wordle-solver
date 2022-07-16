@@ -19,24 +19,18 @@ WordleVM = function (data) {
                 }
             });
     }
-
-    self.tryWord = function () {
+    self.intentarPalabra = function () {
+        console.log("PRUEBA")
         $.post(
             {
-                url: "/Hangman/TryLetter",
+                url: "/Game/IntentarPalabra",
                 data: ko.mapping.toJS(self),
                 success: function (response) {
                     ko.mapping.fromJS(response, {}, self);
-                    if (self.Win()) {
-                        self.Notify("win");
-                    }
-                    else if (self.ChancesLeft() == 0) {
-                        self.Notify("loss");
-                    }
                 },
                 error: function () {
 
                 }
-            })
-    }
+            });
+    }    
 }

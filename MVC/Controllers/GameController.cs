@@ -15,33 +15,25 @@ namespace MVC.Controllers
             return View(new WordleGame());
         }
 
-        //[HttpPost]
-        //public JsonResult InsertWordToGuess(WordleGame model)
-        //{
-        //    Juego = new JuegoWordle(model.Palabra, model.ErroresPosibles, model.Dificultad);
-        //    model.ChancesLeft = Juego.ChancesRestantes;
-        //    return Json(model);
-        //}
-
         [HttpPost]
-        public JsonResult TryLetter(WordleGame model)
+        public JsonResult IntentarPalabra(WordleGame model)
         {
-            model.Win = Juego.IntentarPalabra(model.PalabraIntentada);
-            //model.Win = Juego.ValidarPalabra();
-            //model.ChancesLeft = Juego.ChancesRestantes;
-            //model.WrongLetters = string.Empty;
-            //foreach (var wLetter in Juego.LetrasErradas)
-            //{
-            //    model.WrongLetters += wLetter + ",";
-            //}
-            //model.GuessingWord = string.Empty;
-            //foreach (var rLetter in Juego.PalabraIngresada)
-            //{
-            //    model.GuessingWord += rLetter + " ";
-            //}
-            //model.LetterTyped = string.Empty;
+            //System.Diagnostics.Debug.WriteLine(model.PalabraIntentada);
+            Juego.IntentarPalabra(model.PalabraIntentada);
+            model.PalabrasIntentadas = Juego.palabrasIntentadas;
+            model.ResultadosIntentos = Juego.resultadoIntentos;
+            foreach (var res in model.ResultadosIntentos)
+            {
+                System.Diagnostics.Debug.WriteLine(res);
+
+            }
+            foreach (var res in model.PalabrasIntentadas)
+            {
+                System.Diagnostics.Debug.WriteLine(res);
+
+            }
+
             return Json(model);
         }
-
     }
 }

@@ -22,25 +22,25 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Game(string nombre, int errors, int difficulty)
         {
-            JuegoWordle juegowordle = new JuegoWordle(nombre, errors, difficulty);
+            Juego = new JuegoWordle(nombre, errors, difficulty);
 
             WordleGame juego = new WordleGame
             {
-                Nombre = juegowordle.nombre,
-                ErroresPosibles = juegowordle.maxIntentos,
-                Dificultad = juegowordle.dificultad,
-                Palabra = juegowordle.palabra,
-                PalabrasIntentadas = juegowordle.palabrasIntentadas,
+                Nombre = Juego.nombre,
+                ErroresPosibles = Juego.maxIntentos,
+                Dificultad = Juego.dificultad,
+                Palabra = Juego.palabra,
+                PalabrasIntentadas = Juego.palabrasIntentadas,
             };
 
             return View(juego);
         }
 
-        [Route("Game")]
-        public ActionResult Game(WordleGame gameModel)
-        {
-            return View(gameModel);
-        }
+        //[Route("Game")]
+        //public ActionResult Game(WordleGame gameModel)
+        //{
+        //    return View(gameModel);
+        //}
         
     }
 }
