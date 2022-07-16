@@ -19,6 +19,40 @@
 <hr>
 <section class="input-section">
     <div class="left-side">
+        @using (Html.BeginForm("Game", "Home"))
+        {
+
+            <input type="text" name="nombre" /><br />
+            <br />
+
+            <label for="errors">Selecciona la cantidad de errores</label>
+            <select name="errors" class="errors-dropdown" id="errors">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+
+            <label for="difficulty-dropdown">Selecciona la dificultad</label>
+            <select onchange="setDifficulty()" name="difficulty" class="difficulty-dropdown" id="difficulty-row">
+                <option id="facil" value="1">Facil</option>
+                <option id="medio" value="2">Medio</option>
+                <option id="dificil" value="3">Dificil</option>
+            </select>
+
+
+            <br />
+            <input type="submit" value="Click Me" />
+            <br />
+
+        }
+
+
+
         @Html.TextBoxFor(m => m.Nombre, new Dictionary<String, object>
             {
                 { "class", "name-input" },
@@ -26,24 +60,7 @@
                 { "data-bind", "value:Nombre" }
             })
 
-        <label for="difficulty-dropdown">Selecciona la dificultad</label>
-        <select onchange="setDifficulty()" name="difficulty-dropdown" class="difficulty-dropdown" id="difficulty-row">
-            <option id="facil" value="1">Facil</option>
-            <option id="medio" value="2">Medio</option>
-            <option id="dificil" value="3">Dificil</option>
-        </select>
 
-        <label for="errors">Selecciona la cantidad de errores</label>
-        <select name="errors" class="errors-dropdown" id="errors">
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
 
         @Html.DisplayFor(m => m.Nombre)
         @Html.TextBoxFor(m => m.ErroresPosibles, new { @type = "number" })
