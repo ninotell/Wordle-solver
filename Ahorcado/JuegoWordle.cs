@@ -68,6 +68,7 @@ namespace Wordle
         public bool IntentarPalabra(string _palabra)
         {
             intentos++;
+            _palabra = _palabra.ToUpper();
             palabrasIntentadas.Add(_palabra); // añado la palabra a la lista de intentos
             VerificarPalabra(_palabra);
             if (intentos <= maxIntentos)

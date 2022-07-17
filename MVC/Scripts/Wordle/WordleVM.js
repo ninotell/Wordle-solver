@@ -20,7 +20,6 @@ WordleVM = function (data) {
             });
     }
     self.intentarPalabra = function () {
-        console.log("PRUEBA")
         $.post(
             {
                 url: "/Game/IntentarPalabra",

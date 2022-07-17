@@ -28,15 +28,40 @@
                     { "class", "word-input" },
                     { "placeholder", "Ingrese palabra" },
                     { "data-bind", "value:PalabraIntentada" },
-                    { "maxlength", "8" }
+                    { "maxlength", Model.Dificultad == 1 ? 4 :  Model.Dificultad == 2 ? 6 : 8 }
                 })
             </div>
         </div>
         <button class="intentar-button" data-bind="click: intentarPalabra, enable: true">Intentar!</button>
-        <h5>@Html.DisplayFor(m => m)</h5>
+        </h4>@Html.DisplayFor(m => m)<h4>
+            @*Solo para test de palabrasIntentadas*@
+            <script>
+            console.log(@Model.PalabrasIntentadas.Count)
+
+            </script>
+
+            @if (Model.PalabrasIntentadas.Count > 0)
+            {
+                <div class="resultados">
+
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            @Html.LabelFor(m => m.PalabrasIntentadas)
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.TextBoxFor(m => m.PalabrasIntentadas[0], new Dictionary<String, object>
+                            {
+                                { "class", "form-control" },
+                                { "data-bind", "value:PalabraIntentada, enable: false" }
+                            })
+                        </div>
+                    </div>
+                </div>
+            }
+
     </div>
     <div class="input-container">
-        @for (int i = 0; i < Model.ErroresPosibles; i++)
+        @for (int i = 0; i < (Model.PalabrasIntentadas.Count); i++)
         {
             <div class="input-row">
                 @switch (Model.Dificultad)
@@ -46,7 +71,13 @@
                             for (int j = 0; j <= 3; j++)
                             {
                                 <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[j])</p>
+                                    @*<p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[i][j])</p>*@
+                                    <p class="input-value">
+                                        @Html.TextBoxFor(m => m.PalabrasIntentadas[i][j], new Dictionary<String, Object>
+                               {
+                                   {"data-bind" , "value:" + @Model.PalabrasIntentadas[i][j]}
+                               })
+                                    </p>
                                 </div>
                             }
                             break;
@@ -56,7 +87,7 @@
                             for (int j = 0; j <= 5; j++)
                             {
                                 <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
+                                    <p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[i][j])</p>
                                 </div>
                             }
                             break;
@@ -66,7 +97,45 @@
                             for (int j = 0; j <= 7; j++)
                             {
                                 <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.Palabra[j])</p>
+                                    <p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[i][j])</p>
+                                </div>
+                            }
+                            break;
+                        }
+                }
+            </div>
+        }
+        @for (int i = 0; i < (Model.ErroresPosibles - Model.PalabrasIntentadas.Count); i++)
+        {
+            <div class="input-row">
+                @switch (Model.Dificultad)
+                {
+                    case 1:
+                        {
+                            for (int j = 0; j <= 3; j++)
+                            {
+                                <div class="col input-text">
+                                    <p class="input-value"></p>
+                                </div>
+                            }
+                            break;
+                        }
+                    case 2:
+                        {
+                            for (int j = 0; j <= 5; j++)
+                            {
+                                <div class="col input-text">
+                                    <p class="input-value"></p>
+                                </div>
+                            }
+                            break;
+                        }
+                    case 3:
+                        {
+                            for (int j = 0; j <= 7; j++)
+                            {
+                                <div class="col input-text">
+                                    <p class="input-value"></p>
                                 </div>
                             }
                             break;
@@ -131,6 +200,7 @@
 
     .word-input {
         height: 50px;
+        text-transform: uppercase;
         font-size: 24px;
         border-radius: var(--border-radius);
         padding: 0 0 0 15px;

@@ -19,20 +19,15 @@ namespace MVC.Controllers
         public JsonResult IntentarPalabra(WordleGame model)
         {
             //System.Diagnostics.Debug.WriteLine(model.PalabraIntentada);
-            Juego.IntentarPalabra(model.PalabraIntentada);
+            model.Win = Juego.IntentarPalabra(model.PalabraIntentada);
             model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.ResultadosIntentos = Juego.resultadoIntentos;
-            foreach (var res in model.ResultadosIntentos)
-            {
-                System.Diagnostics.Debug.WriteLine(res);
-
-            }
-            foreach (var res in model.PalabrasIntentadas)
-            {
-                System.Diagnostics.Debug.WriteLine(res);
-
-            }
-
+            //foreach (var item in model.PalabrasIntentadas)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(item);
+            //}
+            System.Diagnostics.Debug.WriteLine(model.Win);
+            model.PalabraIntentada = "";
             return Json(model);
         }
     }
