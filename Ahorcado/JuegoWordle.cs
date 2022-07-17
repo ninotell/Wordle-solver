@@ -17,7 +17,7 @@ namespace Wordle
         public Dictionary<string, int> puntajes = new Dictionary<string, int>() { };
         public List<string> palabrasIntentadas = new List<string>();
         public List<string> resultadoIntentos = new List<string>();
-        Stopwatch stopWatch = new Stopwatch();
+        readonly Stopwatch stopWatch = new Stopwatch();
         public string elapsedTime = "0";
 
         public string[] palabrasFacil = new string[] { "AUTO", "CASA", "PATO", "LORO" };

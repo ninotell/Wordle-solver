@@ -30,7 +30,6 @@ namespace MVC.Controllers
                 ErroresPosibles = Juego.maxIntentos,
                 Dificultad = Juego.dificultad,
                 Palabra = Juego.palabra,
-                PalabrasIntentadas = Juego.palabrasIntentadas,
                 ErroresCometidos = Juego.resultadoIntentos.Count,
                 Win = false,
                 ResultadosIntentos = Juego.resultadoIntentos,

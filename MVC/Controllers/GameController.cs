@@ -20,14 +20,11 @@ namespace MVC.Controllers
         {
             //System.Diagnostics.Debug.WriteLine(model.PalabraIntentada);
             model.Win = Juego.IntentarPalabra(model.PalabraIntentada);
-            model.PalabrasIntentadas = Juego.palabrasIntentadas;
+            // model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.ResultadosIntentos = Juego.resultadoIntentos;
-            //foreach (var item in model.PalabrasIntentadas)
-            //{
-            //    System.Diagnostics.Debug.WriteLine(item);
-            //}
-            System.Diagnostics.Debug.WriteLine(model.Win);
-            model.PalabraIntentada = "";
+            model.ErroresCometidos = Juego.intentos;
+            model.PalabrasIntentadas += Juego.palabrasIntentadas.Last() + ",";
+            model.PalabraIntentada = string.Empty;
             return Json(model);
         }
     }

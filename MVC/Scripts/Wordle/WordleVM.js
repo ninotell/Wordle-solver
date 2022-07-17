@@ -19,6 +19,7 @@ WordleVM = function (data) {
                 }
             });
     }
+
     self.intentarPalabra = function () {
         $.post(
             {
@@ -26,10 +27,16 @@ WordleVM = function (data) {
                 data: ko.mapping.toJS(self),
                 success: function (response) {
                     ko.mapping.fromJS(response, {}, self);
+                    if (self.Win()) {
+                        alert("WIN. Has ganado.");
+                    }
+                    else if (self.ErroresCometidos() == self.ErroresPosibles()) {
+                        alert("LOSS. Has perdido.");
+                    }
                 },
                 error: function () {
 
                 }
-            });
+            })
     }    
 }

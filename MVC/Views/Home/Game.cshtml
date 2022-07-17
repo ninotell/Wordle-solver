@@ -33,89 +33,36 @@
             </div>
         </div>
         <button class="intentar-button" data-bind="click: intentarPalabra, enable: true">Intentar!</button>
-        </h4>@Html.DisplayFor(m => m)<h4>
-            @*Solo para test de palabrasIntentadas*@
-            <script>
-            console.log(@Model.PalabrasIntentadas.Count)
+        <h4>@Html.DisplayFor(m => m)</h4>
 
-            </script>
-
-            @if (Model.PalabrasIntentadas.Count > 0)
-            {
-                <div class="resultados">
-
-                    <div class="form-group">
-                        <div class="col-sm-6">
-                            @Html.LabelFor(m => m.PalabrasIntentadas)
-                        </div>
-                        <div class="col-sm-6">
-                            @Html.TextBoxFor(m => m.PalabrasIntentadas[0], new Dictionary<String, object>
-                            {
-                                { "class", "form-control" },
-                                { "data-bind", "value:PalabraIntentada, enable: false" }
-                            })
-                        </div>
-                    </div>
-                </div>
-            }
+        @*Solo para test de palabrasIntentadas*@
+        <div class="form-group">
+            <div class="col-sm-6">
+                @Html.LabelFor(m => m.PalabrasIntentadas)
+            </div>
+            <div class="col-sm-6">
+                @Html.TextBoxFor(m => m.PalabrasIntentadas, new Dictionary<String, object>
+                {
+                    { "class", "form-control" },
+                    { "data-bind", "value:PalabrasIntentadas, enable: false" }
+                })
+            </div>
+        </div>
 
     </div>
     <div class="input-container">
-        @for (int i = 0; i < (Model.PalabrasIntentadas.Count); i++)
+    
+        @for (int i = 0; i < (Model.ErroresPosibles); i++)
         {
-            <div class="input-row">
-                @switch (Model.Dificultad)
+        <div class="input-row">
+            @switch (Model.Dificultad)
                 {
                     case 1:
                         {
                             for (int j = 0; j <= 3; j++)
                             {
                                 <div class="col input-text">
-                                    @*<p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[i][j])</p>*@
-                                    <p class="input-value">
-                                        @Html.TextBoxFor(m => m.PalabrasIntentadas[i][j], new Dictionary<String, Object>
-                               {
-                                   {"data-bind" , "value:" + @Model.PalabrasIntentadas[i][j]}
-                               })
-                                    </p>
-                                </div>
-                            }
-                            break;
-                        }
-                    case 2:
-                        {
-                            for (int j = 0; j <= 5; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[i][j])</p>
-                                </div>
-                            }
-                            break;
-                        }
-                    case 3:
-                        {
-                            for (int j = 0; j <= 7; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[i][j])</p>
-                                </div>
-                            }
-                            break;
-                        }
-                }
-            </div>
-        }
-        @for (int i = 0; i < (Model.ErroresPosibles - Model.PalabrasIntentadas.Count); i++)
-        {
-            <div class="input-row">
-                @switch (Model.Dificultad)
-                {
-                    case 1:
-                        {
-                            for (int j = 0; j <= 3; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value"></p>
+                                    <p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[j])</p>
                                 </div>
                             }
                             break;
@@ -141,7 +88,7 @@
                             break;
                         }
                 }
-            </div>
+        </div>
         }
     </div>
 </section>
