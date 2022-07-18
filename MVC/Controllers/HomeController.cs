@@ -27,7 +27,7 @@ namespace MVC.Controllers
             WordleGame juego = new WordleGame
             {
                 Nombre = Juego.nombre,
-                ErroresPosibles = Juego.maxIntentos,
+                ErroresPosibles = errors,
                 Dificultad = Juego.dificultad,
                 Palabra = Juego.palabra,
                 ErroresCometidos = Juego.resultadoIntentos.Count,

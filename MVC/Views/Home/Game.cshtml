@@ -34,6 +34,15 @@
                         $("#input-text" + i + j).append("<p class='input-value'>" + data.PalabrasIntentadas[i][j] + "</p>")                        
                     }
                 }
+                for (var i = 0; i < (data.ErroresPosibles - data.PalabrasIntentadas.length); i++) {
+                    $('#palabras-container').append("<div id='input-row-empty" + i + "' class='input-row'></div>")
+                    for (var j = 0; j <= 3; j++) {
+
+                        $("#input-row-empty" + i).append("<div class='col input-text' id='input-text-empty" + i + j + "'></div >")
+                        $("#input-text-empty" + i + j).append("<p class='input-value'></p>")
+                    }
+                }
+
             });
         })
 

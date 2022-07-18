@@ -23,6 +23,8 @@ namespace MVC.Controllers
             model.Win = Juego.IntentarPalabra(model.PalabraIntentada);
             // model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.ResultadosIntentos = Juego.resultadoIntentos;
+            model.ErroresPosibles = Juego.maxIntentos;
+            model.Dificultad = Juego.dificultad;
             model.ErroresCometidos = Juego.intentos;
             model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.Win = Juego.partidaGanada;
