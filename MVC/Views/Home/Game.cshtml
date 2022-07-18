@@ -20,29 +20,29 @@
             console.log($("#palabra-intentada").val())
             e.preventDefault();
             $.post('/Game/IntentarPalabra?palabra=' + $("#palabra-intentada").val(), function (data) {
-                console.log(data)
-                $('#palabras-container').html("")
+                console.log(data);
+                $('#palabras-container').html("");
+                wordLenght = data.Dificultad * 2 + 1;
                 for (var i = 0; i < data.PalabrasIntentadas.length; i++) {
-                    $('#palabras-container').append("<div id='input-row" +i + "' class='input-row'></div>")
-                    for (var j = 0; j <= 3; j++) {
-                        
+                    $('#palabras-container').append("<div id='input-row" + i + "' class='input-row'></div>")
+                    for (var j = 0; j <= wordLenght; j++) {
+
                         data.ResultadosIntentos[i][j] == "X"
                             ? $("#input-row" + i).append("<div style='background-color: #969696' class='col input-text' id='input-text" + i + j + "'></div >")
                             : data.ResultadosIntentos[i][j] == "-"
                                 ? $("#input-row" + i).append("<div style='background-color: #F1EB9C' class='col input-text' id='input-text" + i + j + "'></div >")
                                 : $("#input-row" + i).append("<div style='background-color: #90EE90' class='col input-text' id='input-text" + i + j + "'></div >")
-                        $("#input-text" + i + j).append("<p class='input-value'>" + data.PalabrasIntentadas[i][j] + "</p>")                        
+                        $("#input-text" + i + j).append("<p class='input-value'>" + data.PalabrasIntentadas[i][j] + "</p>")
                     }
                 }
                 for (var i = 0; i < (data.ErroresPosibles - data.PalabrasIntentadas.length); i++) {
                     $('#palabras-container').append("<div id='input-row-empty" + i + "' class='input-row'></div>")
-                    for (var j = 0; j <= 3; j++) {
+                    for (var j = 0; j <= wordLenght; j++) {
 
                         $("#input-row-empty" + i).append("<div class='col input-text' id='input-text-empty" + i + j + "'></div >")
                         $("#input-text-empty" + i + j).append("<p class='input-value'></p>")
                     }
                 }
-
             });
         })
 
