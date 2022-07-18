@@ -1,0 +1,79 @@
+﻿@model MVC.Models.WordleGame
+
+@for (int i = 0; i < (Model.PalabrasIntentadas.Count); i++)
+{
+    <div class="input-row">
+        @switch (Model.Dificultad)
+        {
+            case 1:
+                {
+                    for (int j = 0; j <= 3; j++)
+                    {
+                        <div class="col input-text">
+                            <p class="input-value">P</p>
+                        </div>
+                    }
+                    break;
+                }
+            case 2:
+                {
+                    for (int j = 0; j <= 5; j++)
+                    {
+                        <div class="col input-text">
+                            <p class="input-value"></p>
+                        </div>
+                    }
+                    break;
+                }
+            case 3:
+                {
+                    for (int j = 0; j <= 7; j++)
+                    {
+                        <div class="col input-text">
+                            <p class="input-value"></p>
+                        </div>
+                    }
+                    break;
+                }
+        }
+    </div>
+}
+
+@for (int i = 0; i < (Model.ErroresPosibles - Model.PalabrasIntentadas.Count); i++)
+{
+    <div class="input-row">
+        @switch (Model.Dificultad)
+        {
+            case 1:
+                {
+                    for (int j = 0; j <= 3; j++)
+                    {
+                        <div class="col input-text">
+                            <p class="input-value"></p>
+                        </div>
+                    }
+                    break;
+                }
+            case 2:
+                {
+                    for (int j = 0; j <= 5; j++)
+                    {
+                        <div class="col input-text">
+                            <p class="input-value"></p>
+                        </div>
+                    }
+                    break;
+                }
+            case 3:
+                {
+                    for (int j = 0; j <= 7; j++)
+                    {
+                        <div class="col input-text">
+                            <p class="input-value"></p>
+                        </div>
+                    }
+                    break;
+                }
+        }
+    </div>
+}

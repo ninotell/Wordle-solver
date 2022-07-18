@@ -15,6 +15,29 @@
         var wordleVM = new WordleVM(@Html.Raw(data));
         ko.applyBindings(wordleVM);
     </script>
+    <script>
+        $("#intentar-button").click(function (e) {
+            console.log($("#palabra-intentada").val())
+            e.preventDefault();
+            $.post('/Game/IntentarPalabra?palabra=' + $("#palabra-intentada").val(), function (data) {
+                console.log(data)
+                $('#palabras-container').html("")
+                for (var i = 0; i < data.PalabrasIntentadas.length; i++) {
+                    $('#palabras-container').append("<div id='input-row" +i + "' class='input-row'></div>")
+                    for (var j = 0; j <= 3; j++) {
+                        
+                        data.ResultadosIntentos[i][j] == "X"
+                            ? $("#input-row" + i).append("<div style='background-color: #969696' class='col input-text' id='input-text" + i + j + "'></div >")
+                            : data.ResultadosIntentos[i][j] == "-"
+                                ? $("#input-row" + i).append("<div style='background-color: #F1EB9C' class='col input-text' id='input-text" + i + j + "'></div >")
+                                : $("#input-row" + i).append("<div style='background-color: #90EE90' class='col input-text' id='input-text" + i + j + "'></div >")
+                        $("#input-text" + i + j).append("<p class='input-value'>" + data.PalabrasIntentadas[i][j] + "</p>")                        
+                    }
+                }
+            });
+        })
+
+    </script>
 }
 
 <hr>
@@ -23,19 +46,24 @@
         <h2>@Html.DisplayFor(m => m.Nombre)</h2>
         <div class="form-group">
             <div>
-                @Html.TextBoxFor(m => m.PalabraIntentada, new Dictionary<String, object>
-                {
-                    { "class", "word-input" },
-                    { "placeholder", "Ingrese palabra" },
-                    { "data-bind", "value:PalabraIntentada" },
-                    { "maxlength", Model.Dificultad == 1 ? 4 :  Model.Dificultad == 2 ? 6 : 8 }
-                })
+                <input class="word-input" placeholder="Ingresar palabra" id="palabra-intentada" />
+                @*@Html.TextBoxFor(m => m.PalabraIntentada, new Dictionary<String, object>
+                    {
+                        { "class", "word-input" },
+                        { "placeholder", "Ingrese palabra" },
+                        { "data-bind", "value:PalabraIntentada" },
+                        { "maxlength", Model.Dificultad == 1 ? 4 :  Model.Dificultad == 2 ? 6 : 8 }
+                    })*@
             </div>
         </div>
-        <button class="intentar-button" data-bind="click: intentarPalabra, enable: true">Intentar!</button>
+        <button id="intentar-button" class="intentar-button">Intentar!</button>
+        
+
         <h4>@Html.DisplayFor(m => m)</h4>
 
+
         @*Solo para test de palabrasIntentadas*@
+
         <div class="form-group">
             <div class="col-sm-6">
                 @Html.LabelFor(m => m.PalabrasIntentadas)
@@ -50,46 +78,8 @@
         </div>
 
     </div>
-    <div class="input-container">
-    
-        @for (int i = 0; i < (Model.ErroresPosibles); i++)
-        {
-        <div class="input-row">
-            @switch (Model.Dificultad)
-                {
-                    case 1:
-                        {
-                            for (int j = 0; j <= 3; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value">@Html.DisplayFor(m => m.PalabrasIntentadas[j])</p>
-                                </div>
-                            }
-                            break;
-                        }
-                    case 2:
-                        {
-                            for (int j = 0; j <= 5; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value"></p>
-                                </div>
-                            }
-                            break;
-                        }
-                    case 3:
-                        {
-                            for (int j = 0; j <= 7; j++)
-                            {
-                                <div class="col input-text">
-                                    <p class="input-value"></p>
-                                </div>
-                            }
-                            break;
-                        }
-                }
-        </div>
-        }
+    <div id="palabras-container" class="input-container">
+        @Html.Partial("_Palabras", Model)
     </div>
 </section>
 <style>

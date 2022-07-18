@@ -33,6 +33,7 @@ namespace MVC.Controllers
                 ErroresCometidos = Juego.resultadoIntentos.Count,
                 Win = false,
                 ResultadosIntentos = Juego.resultadoIntentos,
+                PalabrasIntentadas = Juego.palabrasIntentadas,
                 PalabraIntentada = ""
             };
 

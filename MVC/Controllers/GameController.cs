@@ -16,14 +16,16 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult IntentarPalabra(WordleGame model)
+        public JsonResult IntentarPalabra(WordleGame model, string palabra)
         {
-            //System.Diagnostics.Debug.WriteLine(model.PalabraIntentada);
+            model.PalabraIntentada = palabra;
+            System.Diagnostics.Debug.WriteLine("Palabra: " + model.PalabraIntentada);
             model.Win = Juego.IntentarPalabra(model.PalabraIntentada);
             // model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.ResultadosIntentos = Juego.resultadoIntentos;
             model.ErroresCometidos = Juego.intentos;
-            model.PalabrasIntentadas += Juego.palabrasIntentadas.Last() + ",";
+            model.PalabrasIntentadas = Juego.palabrasIntentadas;
+            model.Win = Juego.partidaGanada;
             model.PalabraIntentada = string.Empty;
             return Json(model);
         }
