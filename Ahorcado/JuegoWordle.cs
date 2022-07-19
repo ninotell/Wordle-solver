@@ -118,34 +118,92 @@ namespace Wordle
             //palabraIntentada = palabrasIntentadas[intentos - 1];
             palabraIntentada = _palabra;
 
+            int[] frecuenciaPorLetra = new int[palabraIntentada.Length];
             char[] resultadoIntentado = new char[palabraIntentada.Length];
 
 
+            for (int i = 0; i < frecuenciaPorLetra.Length; i++)
+            {
+                frecuenciaPorLetra[i] = palabra.Count(l => l == palabraIntentada[i]);
+                
+            }
+
+            for (int k = 0; k < palabraIntentada.Length; k++)
+            {
+                if (palabraIntentada[k] == palabra[k])
+                {
+                    resultadoIntentado[k] = 'O';
+                    for (int l = 0; l < palabraIntentada.Length; l++)
+                    {
+                        if (palabraIntentada[k] == palabraIntentada[l])
+                        {
+                            frecuenciaPorLetra[l] -= 1; // resto el numero de ocurrencias
+                        }
+
+                    }
+                } else
+                {
+                    resultadoIntentado[k] = 'X';
+                }
+            }
+
             for (int i = 0; i < palabraIntentada.Length; i++)
             {
-                if (palabraIntentada[i] == palabra[i])
+                if (frecuenciaPorLetra[i] == 0 && resultadoIntentado[i] != 'O')
                 {
-                    resultadoIntentado[i] = 'O';
+                    resultadoIntentado[i] = 'X';
+                    continue;
                 }
-                else
+                else if (frecuenciaPorLetra[i] > 0 && resultadoIntentado[i] != 'O')
                 {
-                    for (int j = 0; j < palabraIntentada.Length; j++)
+                    if (palabraIntentada.Substring(0, i).Count(l => l == palabraIntentada[i]) <= frecuenciaPorLetra[i])
                     {
-                        if (palabraIntentada[i] == palabra[j])
+                        resultadoIntentado[i] = '-';
+                        for (int l = 0; l < palabraIntentada.Length; l++)
                         {
-                            resultadoIntentado[i] = '-';
-                            break;
+                            if (palabraIntentada[i] == palabraIntentada[l])
+                            {
+                                frecuenciaPorLetra[l] -= 1; // resto el numero de ocurrencias
+                            }
+
                         }
-                        else
-                        {
-                            resultadoIntentado[i] = 'X';
-                        }
+
                     }
                 }
-
+               
             }
-            //Console.WriteLine(resultadoIntentado);
-            string res = new string(resultadoIntentado);
+
+            for (int i = 0; i < frecuenciaPorLetra.Length; i++)
+            { 
+                System.Diagnostics.Debug.WriteLine(frecuenciaPorLetra[i]);
+            }
+
+
+                //    for (int i = 0; i < palabraIntentada.Length; i++)
+                //{
+                //    if (palabraIntentada[i] == palabra[i])
+                //    {
+                //        resultadoIntentado[i] = 'O';
+                //    }
+                //    else
+                //    {
+                //        for (int j = 0; j < palabraIntentada.Length; j++)
+                //        {
+                //            if (palabraIntentada[i] == palabra[j])
+                //            {
+                //                resultadoIntentado[i] = '-';
+                //                break;
+                //            }
+                //            else
+                //            {
+                //                resultadoIntentado[i] = 'X';
+                //            }
+                //        }
+                //    }
+
+                //}
+                //Console.WriteLine(resultadoIntentado);
+                string res = new string(resultadoIntentado);
             resultadoIntentos.Add(res);
         }
 

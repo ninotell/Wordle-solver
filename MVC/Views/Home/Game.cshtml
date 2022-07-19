@@ -43,6 +43,13 @@
                         $("#input-text-empty" + i + j).append("<p class='input-value'></p>")
                     }
                 }
+                if (data.Finish) {
+                    if (data.Win) {
+                        alert("WIN. GANASTE, FELICITACIONES!")
+                    } else {
+                        alert("GAME OVER, PERDEDOR.")
+                    }
+                }
             });
         })
 

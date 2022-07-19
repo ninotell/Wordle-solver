@@ -26,6 +26,9 @@ namespace MVC.Models
         [DisplayName("Win")]
         public bool Win { get; set; }
 
+        [DisplayName("Juego Terminado")]
+        public bool Finish { get; set; }
+
         [DisplayName("Errores Cometidos")]
         public int ErroresCometidos { get; set; }
 

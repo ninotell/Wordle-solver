@@ -25,6 +25,7 @@ namespace MVC.Controllers
             model.ResultadosIntentos = Juego.resultadoIntentos;
             model.ErroresPosibles = Juego.maxIntentos;
             model.Dificultad = Juego.dificultad;
+            model.Finish = Juego.juegoTerminado;
             model.ErroresCometidos = Juego.intentos;
             model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.Win = Juego.partidaGanada;
