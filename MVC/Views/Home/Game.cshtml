@@ -18,8 +18,12 @@
         var finalizado = false;
         var ganado = false;
 
+        $("#reintentar-button").click(function (e) {
+            location.reload(true)
+        })
+
+
         self.$("#intentar-button").click(function (e) {
-            console.log($("#palabra-intentada").val())
              if ($("#palabra-intentada").val().length != @Model.WordLength) {
                 alert("Error!! Chequear longitud de palabra")
                 return;
@@ -60,17 +64,21 @@
                     if (data.Win) {
                         alert("GANASTE, FELICITACIONES! La palabra era: " + data.Palabra.toUpperCase() + ".")
                     } else {
+                        $("#reintentar-button").removeClass("hidden").addClass("visible")
                         alert("GAME OVER. Te quedaste sin intentos. La palabra era " + data.Palabra.toUpperCase() + ".")
                     }
                 }
+                $("#palabra-intentada").val("")
             });
         })
+
+
     </script>
 }
 
 <hr>
 <section class="input-section">
-    <div class="left-side">
+    <div id="left-side" class="left-side">
         <h2>@Html.DisplayFor(m => m.Nombre)</h2>
         <div class="form-group">
             <div>
@@ -84,10 +92,14 @@
                     })
             </div>
         </div>
-        <button id="intentar-button" class="intentar-button">Intentar!</button>
-        
+        <button id="intentar-button" class="button intentar-button">Intentar!</button>
+        <button id="reintentar-button" class="button reintentar-button hidden">Rententar!</button>
+        @*<div class="reintentar-button-container">*@
+
+        @*</div>*@
+
         @*<h4>@Html.DisplayFor(m => m)</h4>*@
-               
+
     </div>
     <div id="palabras-container" class="input-container">
         @Html.Partial("_Palabras", Model)
@@ -97,6 +109,12 @@
 <style>
     :root {
         --border-radius: 10px;
+    }
+    .hidden{
+        display:none
+    }
+    .visible{
+        display:block;
     }
 
     * {
@@ -155,8 +173,7 @@
         padding: 0 0 0 15px;
     }
 
-    .intentar-button {
-        background-color: #1899D6;
+    .button {
         border: solid transparent;
         border-radius: 16px;
         border-width: 0 0 4px;
@@ -182,28 +199,42 @@
         -webkit-user-select: none;
         vertical-align: middle;
         white-space: nowrap;
-        width: 80%;
         transition: transform .5s;
     }
 
-        .intentar-button:after {
-            background-clip: padding-box;
-            background-color: #1CB0F6;
-            border: solid transparent;
-            border-radius: var(--border-radius);
-            border-width: 0 0 4px;
-            bottom: -4px;
-            content: "";
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            z-index: -1;
-        }
+    .intentar-button {
+        background-color: #1899D6;
+    }
 
-        .intentar-button:hover {
-            transform: scale(.95);
-        }
+    .reintentar-button {
+        background-color: #d61818;
+    }
+
+    .button:after {
+        background-clip: padding-box;
+        border: solid transparent;
+        border-radius: var(--border-radius);
+        border-width: 0 0 4px;
+        bottom: -4px;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .intentar-button::after {
+        background-color: #1CB0F6;
+    }
+
+    .reintentar-button::after {
+        background-color: #f74f4f;
+    }
+
+    .button:hover {
+        transform: scale(.95);
+    }
 
     .input-section {
         display: flex;
@@ -261,6 +292,7 @@
         justify-content: center;
         align-items: center;
     }
+
     .input-value {
         color: white;
         margin: 0;
