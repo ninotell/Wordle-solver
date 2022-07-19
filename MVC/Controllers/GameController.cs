@@ -19,9 +19,7 @@ namespace MVC.Controllers
         public JsonResult IntentarPalabra(WordleGame model, string palabra)
         {
             model.PalabraIntentada = palabra;
-            System.Diagnostics.Debug.WriteLine("Palabra: " + model.PalabraIntentada);
             model.Win = Juego.IntentarPalabra(model.PalabraIntentada);
-            // model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.ResultadosIntentos = Juego.resultadoIntentos;
             model.ErroresPosibles = Juego.maxIntentos;
             model.Dificultad = Juego.dificultad;
@@ -29,6 +27,7 @@ namespace MVC.Controllers
             model.ErroresCometidos = Juego.intentos;
             model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.Win = Juego.partidaGanada;
+            model.Palabra = Juego.palabra;
             model.PalabraIntentada = "";
             return Json(model);
         }

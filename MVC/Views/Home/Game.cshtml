@@ -14,13 +14,11 @@
     <script type="text/javascript">
         var wordleVM = new WordleVM(@Html.Raw(data));
         ko.applyBindings(wordleVM);
-    </script>
-    <script>
-        $("#intentar-button").click(function (e) {
+
+        self.$("#intentar-button").click(function (e) {
             console.log($("#palabra-intentada").val())
             e.preventDefault();
             $.post('/Game/IntentarPalabra?palabra=' + $("#palabra-intentada").val(), function (data) {
-                console.log(data);
                 $('#palabras-container').html("");
                 wordLenght = data.Dificultad * 2 + 1;
                 for (var i = 0; i < data.PalabrasIntentadas.length; i++) {
@@ -46,14 +44,13 @@
                 $("word-input").val("");
                 if (data.Finish) {
                     if (data.Win) {
-                        alert("WIN. GANASTE, FELICITACIONES!")
+                        alert("GANASTE, FELICITACIONES! La palabra era: " + data.Palabra.toUpperCase() + ".")
                     } else {
-                        alert("GAME OVER, PERDEDOR.")
+                        alert("GAME OVER. Te quedaste sin intentos. La palabra era " + data.Palabra.toUpperCase() + ".")
                     }
                 }
             });
         })
-
     </script>
 }
 
@@ -63,26 +60,25 @@
         <h2>@Html.DisplayFor(m => m.Nombre)</h2>
         <div class="form-group">
             <div>
-                <input class="word-input" placeholder="Ingresar palabra" id="palabra-intentada" />
-                @*@Html.TextBoxFor(m => m.PalabraIntentada, new Dictionary<String, object>
+                @Html.TextBoxFor(m => m.PalabraIntentada, new Dictionary<String, object>
                     {
+                        { "id",  "palabra-intentada"},
                         { "class", "word-input" },
                         { "placeholder", "Ingrese palabra" },
                         { "data-bind", "value:PalabraIntentada" },
-                        { "maxlength", Model.Dificultad == 1 ? 4 :  Model.Dificultad == 2 ? 6 : 8 }
-                    })*@
+                        { "maxlength", Model.Dificultad * 2 + 2 }
+                    })
             </div>
         </div>
         <button id="intentar-button" class="intentar-button">Intentar!</button>
         
-
         @*<h4>@Html.DisplayFor(m => m)</h4>*@
-
                
     </div>
     <div id="palabras-container" class="input-container">
         @Html.Partial("_Palabras", Model)
     </div>
+
 </section>
 <style>
     :root {
