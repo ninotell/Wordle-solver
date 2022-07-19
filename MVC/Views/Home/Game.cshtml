@@ -16,15 +16,26 @@
         ko.applyBindings(wordleVM);
     </script>
     <script>
+        var finalizado = false;
+        var ganado = false;
+
         $("#intentar-button").click(function (e) {
             if ($("#palabra-intentada").val().length != @Model.WordLength) {
                 alert("Error!! Chequear longitud de palabra")
                 return;
             }
+            if (finalizado) {
+                alert("El juego ha terminado")
+                return;
+            }
+
             console.log($("#palabra-intentada").val())
             e.preventDefault();
             $.post('/Game/IntentarPalabra?palabra=' + $("#palabra-intentada").val(), function (data) {
-                console.log(data);
+
+                finalizado = data.Finish;
+                ganado = data.Win;
+                console.log(data)
                 $('#palabras-container').html("");
                 wordLenght = data.Dificultad * 2 + 1;
                 for (var i = 0; i < data.PalabrasIntentadas.length; i++) {
@@ -48,6 +59,7 @@
                     }
                 }
                 $("word-input").val("");
+
                 if (data.Finish) {
                     if (data.Win) {
                         alert("WIN. GANASTE, FELICITACIONES!")
@@ -55,7 +67,11 @@
                         alert("GAME OVER, PERDEDOR.")
                     }
                 }
+
             });
+            console.log("finalizado: ",finalizado)
+            console.log("ganado: ", ganado)
+
         })
 
     </script>
@@ -78,11 +94,11 @@
             </div>
         </div>
         <button id="intentar-button" class="intentar-button">Intentar!</button>
-        
+
 
         @*<h4>@Html.DisplayFor(m => m)</h4>*@
 
-               
+
     </div>
     <div id="palabras-container" class="input-container">
         @Html.Partial("_Palabras", Model)
@@ -255,6 +271,7 @@
         justify-content: center;
         align-items: center;
     }
+
     .input-value {
         color: white;
         margin: 0;
