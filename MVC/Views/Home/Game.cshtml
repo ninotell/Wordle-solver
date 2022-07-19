@@ -28,10 +28,10 @@
                     for (var j = 0; j <= wordLenght; j++) {
 
                         data.ResultadosIntentos[i][j] == "X"
-                            ? $("#input-row" + i).append("<div style='background-color: #969696' class='col input-text' id='input-text" + i + j + "'></div >")
+                            ? $("#input-row" + i).append("<div style='background-color: #787c7e' class='col input-text' id='input-text" + i + j + "'></div >")
                             : data.ResultadosIntentos[i][j] == "-"
-                                ? $("#input-row" + i).append("<div style='background-color: #F1EB9C' class='col input-text' id='input-text" + i + j + "'></div >")
-                                : $("#input-row" + i).append("<div style='background-color: #90EE90' class='col input-text' id='input-text" + i + j + "'></div >")
+                                ? $("#input-row" + i).append("<div style='background-color: #c9b458' class='col input-text' id='input-text" + i + j + "'></div >")
+                                : $("#input-row" + i).append("<div style='background-color: #6aaa64' class='col input-text' id='input-text" + i + j + "'></div >")
                         $("#input-text" + i + j).append("<p class='input-value'>" + data.PalabrasIntentadas[i][j] + "</p>")
                     }
                 }
@@ -43,6 +43,7 @@
                         $("#input-text-empty" + i + j).append("<p class='input-value'></p>")
                     }
                 }
+                $("word-input").val("");
                 if (data.Finish) {
                     if (data.Win) {
                         alert("WIN. GANASTE, FELICITACIONES!")
@@ -75,24 +76,9 @@
         <button id="intentar-button" class="intentar-button">Intentar!</button>
         
 
-        <h4>@Html.DisplayFor(m => m)</h4>
+        @*<h4>@Html.DisplayFor(m => m)</h4>*@
 
-
-        @*Solo para test de palabrasIntentadas*@
-
-        <div class="form-group">
-            <div class="col-sm-6">
-                @Html.LabelFor(m => m.PalabrasIntentadas)
-            </div>
-            <div class="col-sm-6">
-                @Html.TextBoxFor(m => m.PalabrasIntentadas, new Dictionary<String, object>
-                {
-                    { "class", "form-control" },
-                    { "data-bind", "value:PalabrasIntentadas, enable: false" }
-                })
-            </div>
-        </div>
-
+               
     </div>
     <div id="palabras-container" class="input-container">
         @Html.Partial("_Palabras", Model)
@@ -264,6 +250,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .input-value {
+        color: white;
+        margin: 0;
+        font-weight: 600;
     }
 
     .input-text-playable {

@@ -29,7 +29,7 @@ namespace MVC.Controllers
             model.ErroresCometidos = Juego.intentos;
             model.PalabrasIntentadas = Juego.palabrasIntentadas;
             model.Win = Juego.partidaGanada;
-            model.PalabraIntentada = string.Empty;
+            model.PalabraIntentada = "";
             return Json(model);
         }
     }

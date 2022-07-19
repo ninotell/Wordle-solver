@@ -1,6 +1,7 @@
 ﻿using MVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,6 +23,11 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Game(string nombre, int errors, int difficulty)
         {
+            var textinfo = new CultureInfo("en-US", false).TextInfo;
+            nombre = textinfo.ToTitleCase(nombre);
+
+            System.Diagnostics.Debug.WriteLine(nombre);
+
             Juego = new JuegoWordle(nombre, errors, difficulty);
 
             WordleGame juego = new WordleGame
