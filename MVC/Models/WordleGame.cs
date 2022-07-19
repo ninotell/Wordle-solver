@@ -20,6 +20,9 @@ namespace MVC.Models
         [DisplayName("Dificultad")]
         public int Dificultad { get; set; }
 
+        [DisplayName("LongitudPalabra")]
+        public int WordLength { get; set; }
+
         [DisplayName("Palabra Intentada")]
         public string PalabraIntentada { get; set; }
 

@@ -37,6 +37,7 @@ namespace MVC.Controllers
                 Dificultad = Juego.dificultad,
                 Palabra = Juego.palabra,
                 ErroresCometidos = Juego.resultadoIntentos.Count,
+                WordLength = ((Juego.dificultad * 2) + 2),
                 Win = false,
                 ResultadosIntentos = Juego.resultadoIntentos,
                 PalabrasIntentadas = Juego.palabrasIntentadas,
