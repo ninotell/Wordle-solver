@@ -172,13 +172,7 @@ namespace Wordle
                 }
                
             }
-
-            for (int i = 0; i < frecuenciaPorLetra.Length; i++)
-            { 
-                System.Diagnostics.Debug.WriteLine(frecuenciaPorLetra[i]);
-            }
-
-
+            
                 //    for (int i = 0; i < palabraIntentada.Length; i++)
                 //{
                 //    if (palabraIntentada[i] == palabra[i])

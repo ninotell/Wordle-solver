@@ -24,7 +24,7 @@
         @using (Html.BeginForm("Game", "Home"))
         {
 
-            <input type="text" name="nombre" placeholder="Ingrese su nombre" style="text-transform:capitalize" class="centrado"/><br />
+            <input type="text" name="nombre" placeholder="Ingrese su nombre" style="text-transform:capitalize" class="name-input"/><br />
             <br />
 
             <label for="errors">Selecciona la cantidad de errores</label>
@@ -137,7 +137,12 @@
     }
 
     .name-input {
-        margin: 0 0 15px 0;
+        padding: 0;
+        text-align: center
+    }
+    .name-input::placeholder{
+        text-transform: uppercase;
+        font-size: 18px;
     }
 
     .intentar-button {

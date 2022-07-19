@@ -17,6 +17,10 @@
     </script>
     <script>
         $("#intentar-button").click(function (e) {
+            if ($("#palabra-intentada").val().length != @Model.WordLength) {
+                alert("Error!! Chequear longitud de palabra")
+                return;
+            }
             console.log($("#palabra-intentada").val())
             e.preventDefault();
             $.post('/Game/IntentarPalabra?palabra=' + $("#palabra-intentada").val(), function (data) {
@@ -60,10 +64,10 @@
 <hr>
 <section class="input-section">
     <div class="left-side">
-        <h2>@Html.DisplayFor(m => m.Nombre)</h2>
+        <h2>Bienvenido @Html.DisplayFor(m => m.Nombre)!</h2>
         <div class="form-group">
             <div>
-                <input class="word-input" placeholder="Ingresar palabra" id="palabra-intentada" />
+                <input maxlength="@Model.WordLength" class="word-input" placeholder="Ingresar palabra" id="palabra-intentada" />
                 @*@Html.TextBoxFor(m => m.PalabraIntentada, new Dictionary<String, object>
                     {
                         { "class", "word-input" },
