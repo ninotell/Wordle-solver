@@ -17,16 +17,14 @@
     </script>
 }
 <hr>
-
-<h1 class="main-title">WORDLE</h1>
+@*<h1 class="main-title">WORDLE</h1>*@
 <section class="input-section">
-    <div>
-        @using (Html.BeginForm("Game", "Home"))
-        {
+    @using (Html.BeginForm("Game", "Home", FormMethod.Post, new { @class = "game-options-form" }))
+    {
 
-            <input type="text" name="nombre" placeholder="Ingrese su nombre" style="text-transform:capitalize" class="name-input"/><br />
-            <br />
-
+        <input type="text" name="nombre" placeholder="Ingrese su nombre" style="text-transform:capitalize" class="name-input" /><br />
+        <br />
+        <div class="game-option-container">
             <label for="errors">Selecciona la cantidad de errores</label>
             <select name="errors" class="errors-dropdown" id="errors">
                 <option value="3">3</option>
@@ -38,45 +36,43 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            <br />
-
+        </div>
+        <br />
+        <div class="game-option-container">
             <label for="difficulty">Selecciona la dificultad</label>
             <select onchange="setDifficulty()" name="difficulty" class="difficulty-dropdown" id="difficulty-row">
                 <option id="facil" value="1">Facil</option>
                 <option id="medio" value="2">Medio</option>
                 <option id="dificil" value="3">Dificil</option>
             </select>
-            <br />
-            
-            <div class="centrado">
-                <input type="submit" value="Jugar ahora" class="intentar-button" />
-            </div>
-            <br />
+        </div>
+        <br />
 
-        }
+        <button type="submit" class="button jugar-button">Jugar ahora</button>
+        <br />
 
-
-
-        <!--@Html.TextBoxFor(m => m.Nombre, new Dictionary<String, object>
-            {
-                { "class", "name-input" },
-                { "placeholder", "Ingresa tu nombre" },
-                { "data-bind", "value:Nombre" }
-            })
+    }
 
 
 
-        @Html.DisplayFor(m => m.Nombre)
-        @Html.TextBoxFor(m => m.ErroresPosibles, new { @type = "number" })-->
+    <!--@Html.TextBoxFor(m => m.Nombre, new Dictionary<String, object>
+        {
+            { "class", "name-input" },
+            { "placeholder", "Ingresa tu nombre" },
+            { "data-bind", "value:Nombre" }
+        })
 
-        @*<button class="intentar-button" data-bind="click: newGame, enable: true">Jugar ahora!</button>*@
 
-        <!--@Html.ActionLink("Jugar ahora", "Game", "Home", Model, new Dictionary<String, object>
-            {
-                { "class", "intentar-button" },
-                { "data-bind", "value:Game" },
-            })-->
-    </div>
+
+    @Html.DisplayFor(m => m.Nombre)
+    @Html.TextBoxFor(m => m.ErroresPosibles, new { @type = "number" })-->
+    @*<button class="intentar-button" data-bind="click: newGame, enable: true">Jugar ahora!</button>*@
+
+    <!--@Html.ActionLink("Jugar ahora", "Game", "Home", Model, new Dictionary<String, object>
+    {
+        { "class", "intentar-button" },
+        { "data-bind", "value:Game" },
+    })-->
 
 </section>
 
@@ -107,9 +103,16 @@
         text-shadow: 0 0 10px #005276, 0 0 30px #005276;
     }
 
+    .game-option-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .errors-dropdown,
     .difficulty-dropdown {
-        margin: 15px 0;
+        /*margin: 15px 0;*/
         justify-content: center;
         font-size: 18px;
         border-radius: var(--border-radius);
@@ -117,13 +120,13 @@
     }
 
     .difficulty-dropdown {
-        width: 130px;
+        width: 100px;
         color: black;
         transition: transform .5s;
     }
 
     .errors-dropdown {
-        width: 60px;
+        width: 50px;
         height: 50px;
         border-radius: 50%;
     }
@@ -140,57 +143,17 @@
         padding: 0;
         text-align: center
     }
-    .name-input::placeholder{
+
+    .name-input::placeholder {
         text-transform: uppercase;
-        font-size: 18px;
+        font-size: 21px;
     }
 
-    .intentar-button {
-        background-color: #1899D6;
-        border: solid transparent;
-        border-radius: 16px;
-        border-width: 0 0 4px;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-block;
-        font-family: din-round, sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: .8px;
-        line-height: 20px;
-        margin: 15px 0 15px 0;
-        outline: none;
-        overflow: visible;
-        padding: 13px 16px;
-        text-align: center;
-        text-transform: uppercase;
-        touch-action: manipulation;
-        transform: translateZ(0);
-        transition: filter .2s;
-        user-select: none;
-        -webkit-user-select: none;
-        vertical-align: middle;
-        white-space: nowrap;
-        width: 80%;
-        transition: transform .5s;
-        color: white;
-        text-decoration: none;
+    .jugar-button {
+        background-color: #308200
     }
-
-    .intentar-button:after {
-        background-clip: padding-box;
-        background-color: #1CB0F6;
-        border: solid transparent;
-        border-radius: var(--border-radius);
-        border-width: 0 0 4px;
-        bottom: -4px;
-        content: "";
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: -1;
+    .jugar-button::after {
+        background-color: #7bcc1f
     }
 
     #facil {
@@ -205,23 +168,22 @@
         background-color: #FF7F7F;
     }
 
-    .intentar-button:hover {
-        transform: scale(.95);
-        color: white;
-        text-decoration: none;
-    }
-
+    
     .input-section {
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
-        padding: 50px;
-        gap: 150px
+        width: 600px
+    }
+
+    .game-options-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px
     }
 
     h1 {
-        margin: 15px;
+        /*margin: 15px;*/
         text-align: center;
     }
 

@@ -10,29 +10,32 @@
     @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Jugar", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                </ul>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Jugar", "Index", "Home")</li>
+                    </ul>
+
+                </div>
 
             </div>
+        </div>*@
 
-        </div>
-    </div>
+    <h1 class="title" style="font-weight: 600">WORDLE</h1>
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
+
+        <footer style="position: fixed; bottom: 0">
+            <hr />
             <p>&copy; @DateTime.Now.Year - Metodologias Agiles - UTN FRRO</p>
         </footer>
     </div>
@@ -44,6 +47,14 @@
 </html>
 
 <style>
+    .title{
+        top: 15px;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        padding: 0
+    }
+
     .main-title {
         display: block;
         text-decoration: none;
@@ -78,6 +89,53 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .button {
+        border: solid transparent;
+        border-radius: 16px;
+        border-width: 0 0 4px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: din-round, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: .8px;
+        line-height: 20px;
+        /*margin: 15px 0 0 0;*/
+        outline: none;
+        overflow: visible;
+        padding: 13px 16px;
+        text-align: center;
+        text-transform: uppercase;
+        touch-action: manipulation;
+        transform: translateZ(0);
+        transition: filter .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: middle;
+        white-space: nowrap;
+        transition: transform .5s;
+    }
+
+    .button:after {
+        background-clip: padding-box;
+        border: solid transparent;
+        border-radius: var(--border-radius);
+        border-width: 0 0 4px;
+        bottom: -4px;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+    }
+
+    .button:hover {
+        transform: scale(.95);
     }
 
  </style>

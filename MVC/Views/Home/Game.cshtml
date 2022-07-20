@@ -75,8 +75,6 @@
 
     </script>
 }
-
-<hr>
 <section class="input-section">
     <div id="left-side" class="left-side">
         <h2>@Html.DisplayFor(m => m.Nombre)</h2>
@@ -124,7 +122,7 @@
         font-family: sans-serif;
     }
 
-    .main-title {
+    /*.main-title {
         display: block;
         text-decoration: none;
         text-transform: uppercase;
@@ -133,30 +131,30 @@
         text-shadow: 0 0 10px #005276, 0 0 30px #005276;
     }
 
-        .main-title:hover {
-            color: rgba(0,0,0,0.7);
-            transform: translateY(-10px);
-        }
+    .main-title:hover {
+        color: rgba(0,0,0,0.7);
+        transform: translateY(-10px);
+    }
 
-        .main-title:before {
-            content: attr(data-text);
-            position: absolute;
-            bottom: -10px;
-            pointer-events: none;
-            z-index: 1;
-            font-size: 0.35em;
-            color: #00B2FF;
-            font-weight: 800;
-            letter-spacing: 100px;
-            opacity: 0;
-            transition: 0.5s;
-            text-shadow: 0 0 10px #00B2FF, 0 0 30px #00B2FF, 0 0 80px #00B2FF;
-        }
+    .main-title:before {
+        content: attr(data-text);
+        position: absolute;
+        bottom: -10px;
+        pointer-events: none;
+        z-index: 1;
+        font-size: 0.35em;
+        color: #00B2FF;
+        font-weight: 800;
+        letter-spacing: 100px;
+        opacity: 0;
+        transition: 0.5s;
+        text-shadow: 0 0 10px #00B2FF, 0 0 30px #00B2FF, 0 0 80px #00B2FF;
+    }
 
-        .main-title:hover:before {
-            letter-spacing: 6px;
-            opacity: 1;
-        }
+    .main-title:hover:before {
+        letter-spacing: 6px;
+        opacity: 1;
+    }*/
 
     .left-side {
         display: flex;
@@ -173,55 +171,13 @@
         padding: 0 0 0 15px;
     }
 
-    .button {
-        border: solid transparent;
-        border-radius: 16px;
-        border-width: 0 0 4px;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-block;
-        font-family: din-round, sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: .8px;
-        line-height: 20px;
-        margin: 15px 0 0 0;
-        outline: none;
-        overflow: visible;
-        padding: 13px 16px;
-        text-align: center;
-        text-transform: uppercase;
-        touch-action: manipulation;
-        transform: translateZ(0);
-        transition: filter .2s;
-        user-select: none;
-        -webkit-user-select: none;
-        vertical-align: middle;
-        white-space: nowrap;
-        transition: transform .5s;
-    }
-
+    
     .intentar-button {
         background-color: #1899D6;
     }
 
     .reintentar-button {
         background-color: #d61818;
-    }
-
-    .button:after {
-        background-clip: padding-box;
-        border: solid transparent;
-        border-radius: var(--border-radius);
-        border-width: 0 0 4px;
-        bottom: -4px;
-        content: "";
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: -1;
     }
 
     .intentar-button::after {
@@ -232,9 +188,7 @@
         background-color: #f74f4f;
     }
 
-    .button:hover {
-        transform: scale(.95);
-    }
+    
 
     .input-section {
         display: flex;
@@ -246,11 +200,6 @@
 
     .input-row .col p {
         font-size: 28px;
-    }
-
-    h1 {
-        margin: 15px;
-        text-align: center;
     }
 
     .input-container {
