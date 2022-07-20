@@ -64,6 +64,8 @@
                     if (data.Win) {
                         alert("GANASTE, FELICITACIONES! La palabra era: " + data.Palabra.toUpperCase() + ".")
                     } else {
+                        $("#palabra-intentada").attr("disabled", true)
+                        $("#intentar-button").removeClass("visible").addClass("hidden")
                         $("#reintentar-button").removeClass("hidden").addClass("visible")
                         alert("GAME OVER. Te quedaste sin intentos. La palabra era " + data.Palabra.toUpperCase() + ".")
                     }
@@ -77,7 +79,7 @@
 }
 <section class="input-section">
     <div id="left-side" class="left-side">
-        <h2>@Html.DisplayFor(m => m.Nombre)</h2>
+        <h2>Bienvenido @Html.DisplayFor(m => m.Nombre)!</h2>
         <div class="form-group">
             <div>
                 @Html.TextBoxFor(m => m.PalabraIntentada, new Dictionary<String, object>
@@ -90,7 +92,7 @@
                     })
             </div>
         </div>
-        <button id="intentar-button" class="button intentar-button">Intentar!</button>
+        <button id="intentar-button" class="button intentar-button visible">Intentar!</button>
         <button id="reintentar-button" class="button reintentar-button hidden">Rententar!</button>
         @*<div class="reintentar-button-container">*@
 
