@@ -29,7 +29,9 @@
             </div>
         </div>*@
 
-    <h1 class="title" style="font-weight: 600">WORDLE</h1>
+    <div class="title-container">
+        <h1 id="title" class="title">WORDLE</h1>
+    </div>
 
     <div class="container body-content">
         @RenderBody()
@@ -49,13 +51,35 @@
     :root {
         --shadow-opacity: rgba(0,0,0,0.03)
     }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
     .title {
+        cursor: pointer;
+        font-weight: 600;
+        width: fit-content;
+        margin: 0;
+        padding: 0;
+        transition: transform .5s
+    }
+    .title:hover{
+        transform: scale(1.02)
+    }
+
+    .title-container {
         top: 0;
         background-color: white;
-        margin: 0;
         position: fixed;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
+        margin: 0;
         padding: 10px 0;
         box-shadow: 4px 1px 12px 8px var(--shadow-opacity);
         -webkit-box-shadow: 4px 1px 12px 8px var(--shadow-opacity);
@@ -76,7 +100,7 @@
         -moz-box-shadow: -2px -5px 12px 8px var(--shadow-opacity);
     }
 
-    .main-title {
+    /*.main-title {
         display: block;
         text-decoration: none;
         text-transform: uppercase;
@@ -99,7 +123,7 @@
         opacity: 0;
         transition: 0.3s;
         text-shadow: 0 0 10px #00B2FF, 0 0 30px #00B2FF, 0 0 80px #00B2FF;
-    }
+    }*/
 
     .nav navbar-nav {
         border: 3px solid #d3d6da;

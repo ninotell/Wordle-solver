@@ -15,6 +15,12 @@
         var wordleVM = new WordleVM(@Html.Raw(data));
         ko.applyBindings(wordleVM);
 
+
+        $("#title").click(function (e) {
+            e.preventDefault
+            location.href = "/"
+        })
+
         var finalizado = false;
         var ganado = false;
 
@@ -70,6 +76,9 @@
                     if (data.Win) {
                         alert("GANASTE, FELICITACIONES! La palabra era: " + data.Palabra.toUpperCase() + ".")
                         $("#palabra-intentada").attr("placeholder", "FELICITACIONES!!")
+                        $("#intentar-button").removeClass("visible").addClass("hidden")
+                        $("#reintentar-button").removeClass("hidden").addClass("visible")
+                        $("#reintentar-button").html("Jugar de nuevo")
                     } else {
                         $("#palabra-intentada").attr("placeholder", "PERDEDOR.")
                         $("#intentar-button").removeClass("visible").addClass("hidden")
@@ -100,7 +109,7 @@
             </div>
         </div>
         <button id="intentar-button" type="submit" class="button intentar-button visible">Intentar!</button>
-        <button id="reintentar-button" class="button reintentar-button hidden">Rententar!</button>
+        <button id="reintentar-button" class="button reintentar-button hidden">Rententar</button>
         @*<div class="reintentar-button-container">*@
 
         @*</div>*@
@@ -117,19 +126,14 @@
     :root {
         --border-radius: 10px;
     }
-    .hidden{
-        display:none
-    }
-    .visible{
-        display:block;
+
+    .hidden {
+        display: none
     }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: sans-serif;
-    }
+    .visible {
+        display: block;
+    }    
 
     /*.main-title {
         display: block;
@@ -180,7 +184,7 @@
         text-align: center
     }
 
-    
+
     .intentar-button {
         background-color: #1899D6;
     }
@@ -197,7 +201,7 @@
         background-color: #f74f4f;
     }
 
-    
+
 
     .input-section {
         display: flex;
