@@ -22,10 +22,10 @@
     @using (Html.BeginForm("Game", "Home", FormMethod.Post, new { @class = "game-options-form" }))
     {
 
-        <input type="text" name="nombre" placeholder="Ingrese su nombre" style="text-transform:capitalize" class="name-input" /><br />
+        <input type="text" name="nombre" placeholder="Ingrese su nombre" class="name-input" /><br />
         <br />
         <div class="game-option-container">
-            <label for="errors">Selecciona la cantidad de errores</label>
+            <p for="errors">Selecciona la cantidad de errores</p>
             <select name="errors" class="errors-dropdown" id="errors">
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -39,7 +39,7 @@
         </div>
         <br />
         <div class="game-option-container">
-            <label for="difficulty">Selecciona la dificultad</label>
+            <p for="difficulty">Selecciona la dificultad</p>
             <select onchange="setDifficulty()" name="difficulty" class="difficulty-dropdown" id="difficulty-row">
                 <option id="facil" value="1">Facil</option>
                 <option id="medio" value="2">Medio</option>
@@ -104,44 +104,59 @@
     }
 
     .game-option-container {
+        width: 100%;
+        height: 50px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        border: 1px solid black;
+        border-radius: var(--border-radius);
+        padding: 0 0 0 8px;
     }
 
-    .errors-dropdown,
-    .difficulty-dropdown {
-        /*margin: 15px 0;*/
+    .game-option-container p{
+        margin: 0;
+        padding: 0;
+        font-weight: 600
+    }
+
+
+ 
+    .errors-dropdown, .difficulty-dropdown {
+        height: 100%;
         justify-content: center;
         font-size: 18px;
-        border-radius: var(--border-radius);
+        border: none;
+        border-top-right-radius: var(--border-radius);
         padding: 8px;
+        border-bottom-right-radius: var(--border-radius);
+        border-left: 1px solid;
     }
 
     .difficulty-dropdown {
-        width: 100px;
+        width: 30%;
         color: black;
         transition: transform .5s;
     }
 
     .errors-dropdown {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
+        width: 20%;
     }
 
     input {
         height: 50px;
         font-size: 24px;
         border-radius: var(--border-radius);
-        /*padding: 0 0 0 15px;*/
         text-transform: uppercase;
     }
 
     .name-input {
+        max-width: 100%;
+        width: 100%;
         padding: 0;
-        text-align: center
+        text-align: center;
+        text-transform: capitalize
     }
 
     .name-input::placeholder {
@@ -177,8 +192,11 @@
     }
 
     .game-options-form {
+        width: 300px;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         gap: 10px
     }
 
@@ -187,11 +205,7 @@
         text-align: center;
     }
 
-    .difficulty-dropdown:focus {
-        outline: none;
-        transform: scale(1.05);
-    }
-
+    
     .input-container {
         display: flex;
         flex-direction: column;
