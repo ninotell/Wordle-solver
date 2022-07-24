@@ -29,6 +29,7 @@ namespace Wordle
             nombre = _nombre;
             maxIntentos = _maxIntentos;
             dificultad = _dificiultad;
+            intentos = 0;
             if (nombre == null || maxIntentos == 0 || dificultad == 0)
             {
                 return;
@@ -71,6 +72,26 @@ namespace Wordle
             _palabra = _palabra.ToUpper();
             palabrasIntentadas.Add(_palabra); // añado la palabra a la lista de intentos
             VerificarPalabra(_palabra);
+
+
+            if(palabra == _palabra)
+            {
+                partidaGanada = true;
+                TerminarJuego();
+                return true;
+            }
+
+            if (intentos == maxIntentos)
+            {
+                TerminarJuego();
+                return false;
+            }
+
+            return false;
+
+            /* OLD LOGIC ----
+             
+
             if (intentos <= maxIntentos)
             {
                 if (palabra == _palabra)
@@ -88,8 +109,8 @@ namespace Wordle
                     return false;
                 }
             }
-
             return false;
+            */
 
         }
         private void TerminarJuego()

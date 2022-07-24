@@ -10,9 +10,9 @@ namespace AhorcadoTests
         [TestMethod]
         public void GuardarNombreDeJuego()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 3, 1);
+            JuegoWordle juego = new JuegoWordle("JUAN", 3, 1);
 
-            Assert.AreEqual(juego.nombre, "Juan");
+            Assert.AreEqual(juego.nombre, "JUAN");
         }
 
         //[TestMethod]
@@ -27,31 +27,31 @@ namespace AhorcadoTests
         [TestMethod]
         public void ValidarIntentoPalabraCorrecta()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 3, 1);
-            juego.palabra = "perro";
+            JuegoWordle juego = new JuegoWordle("JUAN", 3, 1);
+            juego.palabra = "AUTO";
 
-            Assert.AreEqual(juego.IntentarPalabra("perro"), true);
+            Assert.AreEqual(juego.IntentarPalabra("AUTO"), true);
         }
 
         [TestMethod]
         public void ValidarIntentoPalabraErronea()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 3, 1);
-            juego.palabra = "perro";
+            JuegoWordle juego = new JuegoWordle("JUAN", 3, 1);
+            juego.palabra = "PERRO";
 
-            Assert.AreEqual(juego.IntentarPalabra("gatos"), false);
+            Assert.AreEqual(juego.IntentarPalabra("GATOS"), false);
         }
 
         [TestMethod]
         public void CantidadDeIntentosIncorrectosTres()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 3, 1);
+            JuegoWordle juego = new JuegoWordle("JUAN", 3, 1);
 
-            juego.palabra = "perro";
+            juego.palabra = "PERRO";
 
-            juego.IntentarPalabra("gatos");
-            juego.IntentarPalabra("monos");
-            juego.IntentarPalabra("novia");
+            juego.IntentarPalabra("GATOS");
+            juego.IntentarPalabra("MONOS");
+            juego.IntentarPalabra("NOVIA");
 
             Assert.AreEqual(juego.intentos, 3);
         }
@@ -59,12 +59,12 @@ namespace AhorcadoTests
         [TestMethod]
         public void ValidarPartidaGanada()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 3, 1);
-            juego.palabra = "perro";
+            JuegoWordle juego = new JuegoWordle("JUAN", 3, 1);
+            juego.palabra = "PERRO";
 
-            juego.IntentarPalabra("gatos");
-            juego.IntentarPalabra("gatos");
-            juego.IntentarPalabra("perro");
+            juego.IntentarPalabra("GATOS");
+            juego.IntentarPalabra("GATOS");
+            juego.IntentarPalabra("PERRO");
 
             Assert.AreEqual(juego.partidaGanada, true);
         }
@@ -72,12 +72,12 @@ namespace AhorcadoTests
         [TestMethod]
         public void ValidarPartidaPerdidaPorMaxIntentos3()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 3, 1);
-            juego.palabra = "perro";
+            JuegoWordle juego = new JuegoWordle("JUAN", 3, 1);
+            juego.palabra = "PERRO";
 
-            juego.IntentarPalabra("gatos");
-            juego.IntentarPalabra("monos");
-            juego.IntentarPalabra("novia");
+            juego.IntentarPalabra("GATOS");
+            juego.IntentarPalabra("MONOS");
+            juego.IntentarPalabra("NOVIA");
 
             Assert.AreEqual(juego.partidaGanada, false);
             Assert.AreEqual(juego.intentos, 3);

@@ -2,8 +2,8 @@
 /// <reference path="../jquery-3.1.1.js" />
 /// <reference path="../knockout.mapping-latest.debug.js" />
 
-WordleVM = function (data) {
-    var self = this;
+let WordleVM = function (data) {
+    let self = this;
     ko.mapping.fromJS(data, {}, self);
     self.newGame = function () {
         $.post(
@@ -15,7 +15,7 @@ WordleVM = function (data) {
                     ko.mapping.fromJS(response, {}, self);
                 },
                 error: function () {
-
+                    console.log("Error");
                 }
             });
     }
