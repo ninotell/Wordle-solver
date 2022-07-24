@@ -10,7 +10,7 @@ namespace AhorcadoTests
         [TestMethod]
         public void EstablecerMaxIntentos()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 3, 1);
+            JuegoWordle juego = new JuegoWordle("JUAN", 3, 1);
 
             Assert.AreEqual(juego.maxIntentos, 3);
         }
@@ -18,15 +18,15 @@ namespace AhorcadoTests
         [TestMethod]
         public void ValidarPartidaPerdidaPoMaxIntentosIngresados()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 5, 1);
+            JuegoWordle juego = new JuegoWordle("JUAN", 5, 1);
 
-            juego.palabra = "perro";
+            juego.palabra = "PERRO";
 
-            juego.IntentarPalabra("gatos");
-            juego.IntentarPalabra("monos");
-            juego.IntentarPalabra("novia");
-            juego.IntentarPalabra("casas");
-            juego.IntentarPalabra("autos");
+            juego.IntentarPalabra("GATOS");
+            juego.IntentarPalabra("MONOS");
+            juego.IntentarPalabra("NOVIA");
+            juego.IntentarPalabra("CASAS");
+            juego.IntentarPalabra("AUTOS");
 
             Assert.AreEqual(juego.partidaGanada, false);
             //Assert.AreEqual(juego.juegoTerminado, true);
@@ -36,9 +36,9 @@ namespace AhorcadoTests
         [TestMethod]
         public void GuardaUsuarioNuevo()
         {
-            JuegoWordle juego = new JuegoWordle("Juan", 5, 1);
+            JuegoWordle juego = new JuegoWordle("JUAN", 5, 1);
 
-            Assert.AreEqual(juego.puntajes["Juan"], 0);
+            Assert.AreEqual(juego.puntajes["JUAN"], 0);
         }
 
     }
