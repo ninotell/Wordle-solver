@@ -89,6 +89,8 @@ namespace Wordle
 
             return false;
 
+            /* OLD LOGIC
+             
             if (intentos <= maxIntentos)
             {
                 if (palabra == _palabra)
@@ -106,10 +108,8 @@ namespace Wordle
                     return false;
                 }
             }
-
-
-
             return false;
+            */
 
         }
         private void TerminarJuego()
