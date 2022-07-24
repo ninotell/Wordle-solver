@@ -89,8 +89,9 @@ namespace Wordle
 
             return false;
 
-            /* OLD LOGIC
+            /* OLD LOGIC ----
              
+
             if (intentos <= maxIntentos)
             {
                 if (palabra == _palabra)
